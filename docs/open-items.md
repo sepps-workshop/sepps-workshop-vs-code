@@ -1,6 +1,6 @@
 # Open items
 
-State after the initial port (2026-10-02, `main` at v0.1.0, nothing pushed or published). Delete an item when it is done.
+State after the initial port (2026-10-02, `main` at v0.1.0, pushed, not published). Delete an item when it is done.
 
 ## Before the first release
 
@@ -11,7 +11,6 @@ State after the initial port (2026-10-02, `main` at v0.1.0, nothing pushed or pu
   - whether every `chat.*` key the theme sets still exists in the current VS Code
 - [ ] Add `images/screenshot.png` and reference it in the README.
 - [ ] Create the Marketplace publisher `sepps-workshop` and add the `VSCE_PAT` repository secret.
-- [ ] Push `main` to GitHub.
 - [ ] Decide on `CLAUDE_CODE_MAX_OUTPUT_TOKENS` (16000) in `.claude/settings.json`. It was copied from the Vivid Life port and made a review agent fail once.
 - [ ] After the visual check: log anything the theme got wrong about the foundation in `.claude/learnings.md`.
 
