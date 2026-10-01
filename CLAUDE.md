@@ -6,20 +6,20 @@ VS Code colour-theme port of the [Sepp’s Workshop design system](https://githu
 
 | File                                                         | Purpose                                                                                 |
 | ------------------------------------------------------------ | --------------------------------------------------------------------------------------- |
-| `build.mjs`                                                  | Reads foundation tokens, emits the theme JSON to `themes/` and copies `icon.png`        |
-| `.claudeignore`                                              | Paths Claude Code should skip when indexing (`node_modules/`, `themes/`, `*.vsix`)      |
 | `.claude/settings.json`                                      | Permissions, secret-file guard, PostToolUse Prettier hook, env defaults                 |
 | `.claude/skills/release/SKILL.md`                            | `/release` skill: version bump → CHANGELOG → tag → push                                 |
 | `.claude/skills/sepps-workshop/SKILL.md`                     | Port-side skill: how to read foundation tokens; copied from the foundation's `handoff/` |
+| `.claudeignore`                                              | Paths Claude Code should skip when indexing (`node_modules/`, `themes/`, `*.vsix`)      |
 | `.githooks/pre-commit`                                       | Runs sync-config-table.sh and gitleaks on every commit                                  |
 | `.github/workflows/claude-code-review.yml`                   | Auto-reviews PRs with Claude on open/synchronize                                        |
 | `.github/workflows/claude.yml`                               | Responds to `@claude` mentions in issues, PRs, and review comments                      |
 | `.github/workflows/publish-to-visual-studio-marketplace.yml` | Publishes to VS Code Marketplace on `v*` tag push                                       |
 | `.gitignore`                                                 | Git ignore patterns                                                                     |
-| `package.json`                                               | VS Code extension manifest with one `contributes.themes` entry                          |
 | `.prettierignore`                                            | Paths Prettier must skip — generated `themes/`, `icon.png`                              |
-| `scripts/sync-config-table.sh`                               | Keeps this table in sync with the filesystem (called by pre-commit)                     |
 | `.vscodeignore`                                              | Paths `vsce package` should not bundle into the `.vsix`                                 |
+| `build.mjs`                                                  | Reads foundation tokens, emits the theme JSON to `themes/` and copies `icon.png`        |
+| `package.json`                                               | VS Code extension manifest with one `contributes.themes` entry                          |
+| `scripts/sync-config-table.sh`                               | Keeps this table in sync with the filesystem (called by pre-commit)                     |
 
 ## Commands
 
