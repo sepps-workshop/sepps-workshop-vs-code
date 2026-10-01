@@ -19,7 +19,9 @@
   "engines": {
     "vscode": "^1.74.0"
   },
-  "categories": ["Themes"],
+  "categories": [
+    "Themes"
+  ],
   "keywords": [
     "theme",
     "color-theme",
