@@ -1,0 +1,59 @@
+{
+  "name": "sepps-workshop-theme",
+  "displayName": "Sepp’s Workshop Theme",
+  "description": "One medium-dark color theme for VS Code (Visual Studio Code) on sepp.med Darkblue. WCAG AA verified.",
+  "version": "0.1.0",
+  "publisher": "sepps-workshop",
+  "license": "MIT",
+  "author": {
+    "name": "sepp.med gmbh"
+  },
+  "homepage": "https://github.com/sepps-workshop/sepps-workshop-vs-code",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sepps-workshop/sepps-workshop-vs-code.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sepps-workshop/sepps-workshop-vs-code/issues"
+  },
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": ["Themes"],
+  "keywords": [
+    "theme",
+    "color-theme",
+    "dark-theme",
+    "wcag",
+    "accessibility",
+    "sepps-workshop"
+  ],
+  "icon": "icon.png",
+  "galleryBanner": {
+    "color": "#0d3174",
+    "theme": "dark"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node --test src/workbench-colors.test.mjs src/theme-template.test.mjs src/manifest.test.mjs",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepackage": "npm run build",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@sepps-workshop/design-system": "^0.2.1",
+    "@vscode/vsce": "^3.9.2",
+    "prettier": "^3.9.9"
+  },
+  "contributes": {
+    "themes": [
+      {
+        "label": "Sepp’s Workshop",
+        "uiTheme": "vs-dark",
+        "path": "./themes/sepps-workshop-color-theme.json"
+      }
+    ]
+  }
+}

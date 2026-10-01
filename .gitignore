@@ -1,0 +1,18 @@
+node_modules/
+*.vsix
+.DS_Store
+
+.superpowers/
+
+# Claude Code — personal files
+.claude/settings.local.json
+.claude/local.md
+.claude/worktrees/
+
+# Headroom — machine-local session cache and learnings
+.headroom/
+
+# Local code-intelligence tool caches
+.codegraph/
+.serena/
+.tokensave/

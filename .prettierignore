@@ -1,0 +1,6 @@
+node_modules/
+themes/
+package-lock.json
+*.vsix
+icon.png
+images/
