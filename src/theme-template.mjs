@@ -34,7 +34,7 @@ function buildGeneratedTokenRules(tokens) {
 }
 
 function buildTokenColors(tokens) {
-  const { extended } = tokens.syntax_tokens;
+  const { extended, core_style } = tokens.syntax_tokens;
   const { git } = tokens.workbench_color_roles;
   const rule = (name, scope, role) => ({
     name,
@@ -43,6 +43,13 @@ function buildTokenColors(tokens) {
   });
   return [
     ...buildGeneratedTokenRules(tokens),
+    // The punct rule would dim quotes below their string and lift comment
+    // markers above their comment.
+    rule("String quotes", ["punctuation.definition.string"], "string"),
+    rule("Comment markers", ["punctuation.definition.comment"], {
+      color: "comment",
+      style: core_style.comment,
+    }),
     rule(
       "Template expression delimiter",
       [
@@ -92,9 +99,10 @@ function buildTokenColors(tokens) {
       ],
       extended.link,
     ),
+    // Not markup.fenced_code.block: that would tint the embedded language.
     rule(
-      "Markdown inline/fenced code",
-      ["markup.inline.raw", "markup.fenced_code.block", "markup.raw.block"],
+      "Markdown inline code",
+      ["markup.inline.raw", "markup.raw.block"],
       "string",
     ),
     rule(
@@ -105,6 +113,7 @@ function buildTokenColors(tokens) {
     rule(
       "Markdown list bullet",
       [
+        "punctuation.definition.list.begin.markdown",
         "beginning.punctuation.definition.list.markdown",
         "punctuation.definition.list_item",
       ],

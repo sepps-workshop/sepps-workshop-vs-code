@@ -267,16 +267,22 @@ test("selected rows carry their text and the match highlight", () => {
       "input.background",
       ["inputOption.activeForeground"],
     ],
-    [
-      "chat.slashCommandBackground",
-      "chat.requestBackground",
-      ["chat.slashCommandForeground"],
-    ],
   ]) {
     const bg = on(colors[wash], colors[base]);
     for (const key of texts)
       assertContrast(`${key} on ${wash} over ${base}`, colors[key], bg, 4.5);
   }
+  // The request is itself a wash, so the slash command stacks on it.
+  for (const base of ["sideBar.background", "editor.background"])
+    assertContrast(
+      `chat.slashCommandForeground on a request over ${base}`,
+      colors["chat.slashCommandForeground"],
+      on(
+        colors["chat.slashCommandBackground"],
+        on(colors["chat.requestBackground"], colors[base]),
+      ),
+      4.5,
+    );
 });
 
 test("rows that keep git and diagnostic colours stay readable", () => {
@@ -350,4 +356,39 @@ test("an overlay the foundation no longer has stops the build by name", () => {
   const broken = structuredClone(tokens);
   delete broken.overlay.hover;
   assert.throws(() => buildWorkbenchColors(broken), /Unknown overlay: hover/);
+});
+
+/* ── Final-review fixes ──────────────────────────────────────────── */
+
+test("chat requests and welcome tiles keep links and descriptions readable", () => {
+  for (const base of ["sideBar.background", "editor.background"])
+    for (const wash of [
+      "chat.requestBackground",
+      "chat.requestBubbleBackground",
+    ])
+      for (const key of ["textLink.foreground", "textPreformat.foreground"])
+        assertContrast(
+          `${key} on ${wash} over ${base}`,
+          colors[key],
+          on(colors[wash], colors[base]),
+          4.5,
+        );
+  assertContrast(
+    "descriptionForeground on a hovered welcome tile",
+    colors.descriptionForeground,
+    on(
+      colors["welcomePage.tileHoverBackground"],
+      colors["welcomePage.tileBackground"],
+    ),
+    4.5,
+  );
+});
+
+test("a token the foundation no longer has stops the build by key", () => {
+  const broken = structuredClone(tokens);
+  delete broken.text.fg_subtle;
+  assert.throws(
+    () => buildWorkbenchColors(broken),
+    /No token value for descriptionForeground/,
+  );
 });

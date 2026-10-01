@@ -229,3 +229,29 @@ test("code stays readable on stacked diff spans, merge regions and the stack fra
       4.5,
     );
 });
+
+/* ── Final-review fixes ──────────────────────────────────────────── */
+
+test("Markdown list bullets use the scope VS Code's grammar emits", () => {
+  assert.ok(
+    theme.tokenColors
+      .find((r) => r.name === "Markdown list bullet")
+      .scope.includes("punctuation.definition.list.begin.markdown"),
+  );
+});
+
+test("fenced code blocks do not tint the embedded language", () => {
+  for (const rule of theme.tokenColors)
+    assert.ok(
+      !rule.scope.includes("markup.fenced_code.block"),
+      `rule "${rule.name}" colours whole fenced blocks`,
+    );
+});
+
+test("string quotes and comment markers match what they delimit", () => {
+  assert.deepEqual(findRule("String quotes"), { foreground: syntax.string });
+  assert.deepEqual(findRule("Comment markers"), {
+    foreground: syntax.comment,
+    fontStyle: "italic",
+  });
+});

@@ -370,7 +370,7 @@
     "problemsInfoIcon.foreground": "#66bee5",
     "welcomePage.background": "#0d3174",
     "welcomePage.tileBackground": "#102d62",
-    "welcomePage.tileHoverBackground": "#254682",
+    "welcomePage.tileHoverBackground": "#1b1d1c4d",
     "welcomePage.progress.background": "#102d62",
     "welcomePage.progress.foreground": "#fbba00",
     "walkThrough.embeddedEditorBackground": "#102d62",
@@ -397,8 +397,8 @@
     "notebook.selectedCellBorder": "#3d5a90",
     "notebook.symbolHighlightBackground": "#fbba001a",
     "chat.requestBorder": "#254682",
-    "chat.requestBackground": "#254682",
-    "chat.requestBubbleBackground": "#254682",
+    "chat.requestBackground": "#1b1d1c4d",
+    "chat.requestBubbleBackground": "#1b1d1c4d",
     "chat.requestCodeBorder": "#3d5a90",
     "chat.checkpointSeparator": "#254682",
     "chat.thinkingShimmer": "#fbba00",
@@ -800,6 +800,25 @@
       }
     },
     {
+      "name": "String quotes",
+      "scope": [
+        "punctuation.definition.string"
+      ],
+      "settings": {
+        "foreground": "#f7c29c"
+      }
+    },
+    {
+      "name": "Comment markers",
+      "scope": [
+        "punctuation.definition.comment"
+      ],
+      "settings": {
+        "foreground": "#9eadc7",
+        "fontStyle": "italic"
+      }
+    },
+    {
       "name": "Template expression delimiter",
       "scope": [
         "punctuation.definition.template-expression",
@@ -888,10 +907,9 @@
       }
     },
     {
-      "name": "Markdown inline/fenced code",
+      "name": "Markdown inline code",
       "scope": [
         "markup.inline.raw",
-        "markup.fenced_code.block",
         "markup.raw.block"
       ],
       "settings": {
@@ -912,6 +930,7 @@
     {
       "name": "Markdown list bullet",
       "scope": [
+        "punctuation.definition.list.begin.markdown",
         "beginning.punctuation.definition.list.markdown",
         "punctuation.definition.list_item"
       ],

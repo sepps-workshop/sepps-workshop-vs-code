@@ -21,7 +21,7 @@ export function buildWorkbenchColors(tokens) {
     return overlay[name].hexa;
   };
 
-  return {
+  const colors = {
     // base
     foreground: text.fg,
     "icon.foreground": text.fg_muted,
@@ -480,7 +480,7 @@ export function buildWorkbenchColors(tokens) {
     // welcome page
     "welcomePage.background": surface.bg,
     "welcomePage.tileBackground": surface.bg_sunk,
-    "welcomePage.tileHoverBackground": surface.bg_soft,
+    "welcomePage.tileHoverBackground": wash("hover"),
     "welcomePage.progress.background": surface.bg_sunk,
     "welcomePage.progress.foreground": accent,
     "walkThrough.embeddedEditorBackground": surface.bg_sunk,
@@ -513,8 +513,9 @@ export function buildWorkbenchColors(tokens) {
 
     // chat
     "chat.requestBorder": border.subtle,
-    "chat.requestBackground": surface.bg_soft,
-    "chat.requestBubbleBackground": surface.bg_soft,
+    // Requests show links and inline code, which bg_soft cannot carry.
+    "chat.requestBackground": wash("hover"),
+    "chat.requestBubbleBackground": wash("hover"),
     "chat.requestCodeBorder": border.default,
     "chat.checkpointSeparator": border.subtle,
     "chat.thinkingShimmer": accent,
@@ -537,4 +538,10 @@ export function buildWorkbenchColors(tokens) {
     "extensionIcon.verifiedForeground": signal.success,
     "extensionIcon.preReleaseForeground": signal.info,
   };
+
+  // JSON.stringify drops undefined, so a token the foundation renamed would
+  // silently leave its keys at VS Code defaults.
+  for (const [key, value] of Object.entries(colors))
+    if (typeof value !== "string") throw new Error(`No token value for ${key}`);
+  return colors;
 }
