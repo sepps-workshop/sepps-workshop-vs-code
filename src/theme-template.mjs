@@ -51,6 +51,11 @@ function buildTokenColors(tokens) {
       style: core_style.comment,
     }),
     rule(
+      "Regex delimiters",
+      ["string.regexp punctuation.definition.string"],
+      "regex",
+    ),
+    rule(
       "Template expression delimiter",
       [
         "punctuation.definition.template-expression",
@@ -74,10 +79,14 @@ function buildTokenColors(tokens) {
       color: "string",
       style: ["italic", "underline"],
     }),
-    rule("Python docstring", ["string.quoted.docstring.multi"], {
-      color: "comment",
-      style: ["italic"],
-    }),
+    rule(
+      "Python docstring",
+      [
+        "string.quoted.docstring.multi",
+        "string.quoted.docstring.multi punctuation.definition.string",
+      ],
+      { color: "comment", style: ["italic"] },
+    ),
     rule(
       "CSS at-rule",
       ["keyword.control.at-rule", "punctuation.definition.keyword"],

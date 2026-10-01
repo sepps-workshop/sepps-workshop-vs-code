@@ -819,6 +819,15 @@
       }
     },
     {
+      "name": "Regex delimiters",
+      "scope": [
+        "string.regexp punctuation.definition.string"
+      ],
+      "settings": {
+        "foreground": "#f29452"
+      }
+    },
+    {
       "name": "Template expression delimiter",
       "scope": [
         "punctuation.definition.template-expression",
@@ -869,7 +878,8 @@
     {
       "name": "Python docstring",
       "scope": [
-        "string.quoted.docstring.multi"
+        "string.quoted.docstring.multi",
+        "string.quoted.docstring.multi punctuation.definition.string"
       ],
       "settings": {
         "foreground": "#9eadc7",

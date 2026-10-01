@@ -255,3 +255,19 @@ test("string quotes and comment markers match what they delimit", () => {
     fontStyle: "italic",
   });
 });
+
+test("delimiters of strings that are not string-coloured follow their string", () => {
+  // The deeper selector outranks the bare "String quotes" rule.
+  assert.ok(
+    theme.tokenColors
+      .find((r) => r.name === "Python docstring")
+      .scope.includes(
+        "string.quoted.docstring.multi punctuation.definition.string",
+      ),
+  );
+  const regex = theme.tokenColors.find((r) => r.name === "Regex delimiters");
+  assert.deepEqual(regex?.scope, [
+    "string.regexp punctuation.definition.string",
+  ]);
+  assert.deepEqual(regex.settings, { foreground: syntax.regex });
+});
