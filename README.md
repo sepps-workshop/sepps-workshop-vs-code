@@ -19,14 +19,10 @@ The colours come from the [Sepp’s Workshop design system](https://github.com/s
 
 ## Install
 
-The theme is not on the VS Code Marketplace yet. Until it is, build the extension yourself. You need Node.js 20 or later.
+Install it from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=sepps-workshop.sepps-workshop-theme), or from the command line:
 
 ```bash
-git clone https://github.com/sepps-workshop/sepps-workshop-vs-code.git
-cd sepps-workshop-vs-code
-npm install
-npm run package
-code --install-extension sepps-workshop-theme-0.1.0.vsix
+code --install-extension sepps-workshop.sepps-workshop-theme
 ```
 
 Then pick **Sepp’s Workshop** from `Preferences: Color Theme` (`Ctrl+K Ctrl+T`, or `Cmd+K Cmd+T` on macOS).
@@ -69,7 +65,7 @@ npm run build   # regenerates themes/ and icon.png from @sepps-workshop/design-s
 npm test
 ```
 
-To preview locally, press `F5` in VS Code. That opens an Extension Development Host, where you can pick the theme.
+You need Node.js 20 or later. To preview locally, press `F5` in VS Code. That opens an Extension Development Host, where you can pick the theme. To install a local build instead, run `npm run package` and then `code --install-extension` on the `.vsix` it writes.
 
 If a colour looks wrong, or two things are hard to tell apart, the cause is almost always in the design system and not in this port. Please open the issue [there](https://github.com/sepps-workshop/sepps-workshop-design-system/issues). A mapping mistake (the right colour on the wrong setting) belongs here.
 
