@@ -27,9 +27,10 @@ code --install-extension sepps-workshop.sepps-workshop-theme
 
 Then pick **Sepp’s Workshop** from `Preferences: Color Theme` (`Ctrl+K Ctrl+T`, or `Cmd+K Cmd+T` on macOS).
 
-## Recommended font
+## Recommended companions
 
-Themes cannot ship fonts. The design system recommends [JetBrains Mono](https://www.jetbrains.com/lp/mono/) for the editor, and [JetBrainsMono Nerd Font](https://www.nerdfonts.com/font-downloads) for the integrated terminal if your prompt shows icons.
+- **File icons**: [Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme). The theme ships no file icons; Material covers nearly every file type VS Code recognises. Leave the file icons in their own colours, they encode the file type.
+- **Font**: themes cannot ship fonts. The design system recommends [JetBrains Mono](https://www.jetbrains.com/lp/mono/) for the editor, and [JetBrainsMono Nerd Font](https://www.nerdfonts.com/font-downloads) for the integrated terminal if your prompt shows icons.
 
 ```jsonc
 "editor.fontFamily": "\"JetBrains Mono\", \"Cascadia Code\", Consolas, monospace",
