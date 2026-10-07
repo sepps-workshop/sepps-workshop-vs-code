@@ -2,7 +2,7 @@
   "name": "sepps-workshop-theme",
   "displayName": "Sepp’s Workshop Theme",
   "description": "One dark color theme for VS Code (Visual Studio Code) on sepp.med Darkblue. WCAG AA verified.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "publisher": "sepps-workshop",
   "license": "MIT",
   "author": {

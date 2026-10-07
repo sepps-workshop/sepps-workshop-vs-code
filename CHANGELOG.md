@@ -4,9 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-10-07
+
 ### Changed
 
 - Updated to `@sepps-workshop/design-system` 0.6.0.
+- Updated `@vscode/vsce` to 4.0.0, which clears the `npm audit` advisory.
 
 ### Added
 
