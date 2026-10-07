@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@sepps-workshop/design-system": "^0.6.0",
-    "@vscode/vsce": "^3.9.2",
+    "@vscode/vsce": "^4.0.0",
     "prettier": "^3.9.9"
   },
   "contributes": {
