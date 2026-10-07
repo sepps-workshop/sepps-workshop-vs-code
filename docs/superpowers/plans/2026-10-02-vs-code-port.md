@@ -1412,7 +1412,7 @@ Expected: the file fails to load with `Cannot find module` for `./theme-template
 - [ ] **Step 3: Write `src/theme-template.mjs`**
 
 ```js
-// Maps Sepp's Workshop foundation tokens to a VS Code color theme.
+// Maps Sepp’s Workshop foundation tokens to a VS Code color theme.
 // One pure function: tokens -> theme JSON object. No colour is written
 // in this port: every value is read from the tokens.
 

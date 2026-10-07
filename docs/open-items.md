@@ -45,19 +45,19 @@ State after the initial port (2026-10-02, `main` at v0.1.0, pushed, not publishe
 
 The VS Code port (v0.3.0) reads its code-area overlays from the foundation recipes, but `src/theme-template.mjs` still decides about 43 translucent colours itself: it holds an `ALPHA` table (`a10` … `a90`) and calls `withAlpha(colour, ALPHA.x)` on `accent`, `text.fg_subtle` and the semantic colours. None of these values passes a foundation gate, and every other port would have to re-invent them.
 
-Sepp's Workshop had the same gap. Its foundation closed it in 0.2.0 and 0.2.1, and its VS Code port now contains no alpha value and no hex at all (a test fails on any `#` in the template sources).
+Sepp’s Workshop had the same gap. Its foundation closed it in 0.2.0 and 0.2.1, and its VS Code port now contains no alpha value and no hex at all (a test fails on any `#` in the template sources).
 
 ### Proposal
 
 1. **Add recipes for what the port decides today**, grouped as the port uses them:
-   - `hover`, `active` (row and control hover/pressed states, including button hover, which is `accent` at `a90` today; Sepp's Workshop uses an opaque `accent_hover` token instead)
+   - `hover`, `active` (row and control hover/pressed states, including button hover, which is `accent` at `a90` today; Sepp’s Workshop uses an opaque `accent_hover` token instead)
    - `slider`, `slider_hover`, `slider_active` (scrollbar and minimap sliders)
    - `merge_current_content`, `merge_current_header`, `merge_incoming_content`, `merge_incoming_header`, `merge_common_content`, `merge_common_header`
    - `stack_frame` (and the focused stack frame, if it should differ)
    - `scrim` (the dimmed area behind a modal)
    - the accent washes now written as `accent` at 10–40 %: selection highlight, hover highlight, symbol highlight, bracket match, find range, peek-view match, minimap and overview-ruler marks, input option active, validation backgrounds, chat request hover, slash command
 2. **Publish a generated `hexa` field** (`#rrggbbaa`) next to each recipe's composited `hex`, per flavour. The port's `overlayHex()` and `withAlpha()` helpers then disappear.
-3. **Give every recipe exactly one gate class** and fail the build when one has none: behind code, behind a label, a surface wash, or non-text. Gates that proved necessary in Sepp's Workshop:
+3. **Give every recipe exactly one gate class** and fail the build when one has none: behind code, behind a label, a surface wash, or non-text. Gates that proved necessary in Sepp’s Workshop:
    - text and every syntax colour on each code overlay, and on stacked ones (inserted span on inserted line)
    - ANSI colours on the terminal selection
    - surface washes on every surface they can land on, and they must move away from the canvas visibly
@@ -66,6 +66,6 @@ Sepp's Workshop had the same gap. Its foundation closed it in 0.2.0 and 0.2.1, a
 
 ### Notes from doing this once
 
-- Measure before adding a recipe. Three planned recipes were dropped in Sepp's Workshop after measuring (diff gutter, a second stack-frame hue, a terminal selection foreground).
+- Measure before adding a recipe. Three planned recipes were dropped in Sepp’s Workshop after measuring (diff gutter, a second stack-frame hue, a terminal selection foreground).
 - Stacked overlays are where AA fails first: the inserted-text span over the inserted line needed its own patch release.
 - Overview-ruler marks have no text on them; they belong in the non-text class with a visibility minimum, not a contrast gate.
