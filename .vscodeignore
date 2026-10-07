@@ -6,6 +6,7 @@
 .prettierignore
 .claudeignore
 .claude/**
+.vscode/**
 .superpowers/**
 CLAUDE.md
 node_modules/**

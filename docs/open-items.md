@@ -4,7 +4,7 @@ State after the initial port (2026-10-02, `main` at v0.1.0, pushed, not publishe
 
 ## Before the first release
 
-- [ ] Check the theme in a running VS Code (Extension Development Host). F5 needs a `.vscode/launch.json` first; alternatively `npm run package` and install the `.vsix`. Look at:
+- [ ] Check the theme in a running VS Code (Extension Development Host): press F5, or `npm run package` and install the `.vsix`. Look at:
   - text on selected rows (lists, quick input, suggest widget, menus)
   - chat requests, slash commands and hovered welcome tiles
   - diff, merge and stack-frame backgrounds behind code
