@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-10-07
+
+### Changed
+
+- Updated to `@sepps-workshop/design-system` 0.5.0.
+- Markdown inline code takes the `code` role and YAML keys take the `key` role. JSON keys share the `key` role.
+- Markdown italic and bold now carry the foundation's `emphasis` and `strong` colours.
+
 ## [0.1.0] - 2026-10-07
 
 ### Added
