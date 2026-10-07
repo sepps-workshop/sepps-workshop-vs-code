@@ -706,6 +706,7 @@
         "markup.italic"
       ],
       "settings": {
+        "foreground": "#fde399",
         "fontStyle": "italic"
       }
     },
@@ -715,7 +716,28 @@
         "markup.bold"
       ],
       "settings": {
+        "foreground": "#f29452",
         "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "code",
+      "scope": [
+        "markup.inline.raw",
+        "markup.raw.block"
+      ],
+      "settings": {
+        "foreground": "#b3ddf1"
+      }
+    },
+    {
+      "name": "key",
+      "scope": [
+        "support.type.property-name.json",
+        "entity.name.tag.yaml"
+      ],
+      "settings": {
+        "foreground": "#80c7e7"
       }
     },
     {
@@ -862,7 +884,7 @@
         "entity.name.tag.yaml"
       ],
       "settings": {
-        "foreground": "#e7eaf1"
+        "foreground": "#80c7e7"
       }
     },
     {
@@ -923,7 +945,7 @@
         "markup.raw.block"
       ],
       "settings": {
-        "foreground": "#f7c29c"
+        "foreground": "#b3ddf1"
       }
     },
     {

@@ -74,7 +74,7 @@ function buildTokenColors(tokens) {
       tokens.shell_roles.variable.color,
     ),
     // Without this the tag rule paints YAML keys while JSON keys stay fg.
-    rule("YAML key", ["entity.name.tag.yaml"], extended.property),
+    rule("YAML key", ["entity.name.tag.yaml"], extended.key),
     rule("YAML alias", ["variable.other.alias.yaml"], {
       color: "string",
       style: ["italic", "underline"],
@@ -112,7 +112,7 @@ function buildTokenColors(tokens) {
     rule(
       "Markdown inline code",
       ["markup.inline.raw", "markup.raw.block"],
-      "string",
+      extended.code,
     ),
     rule(
       "Markdown quote",

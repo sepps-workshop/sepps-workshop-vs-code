@@ -120,9 +120,15 @@ test("extended slots resolve text and semantic targets", () => {
   });
 });
 
-test("emphasis and strong set a font style and no colour", () => {
-  assert.deepEqual(findRule("emphasis"), { fontStyle: "italic" });
-  assert.deepEqual(findRule("strong"), { fontStyle: "bold" });
+test("emphasis and strong carry their foundation colour and a font style", () => {
+  assert.deepEqual(findRule("emphasis"), {
+    foreground: syntax.type,
+    fontStyle: "italic",
+  });
+  assert.deepEqual(findRule("strong"), {
+    foreground: syntax.constant,
+    fontStyle: "bold",
+  });
   assert.deepEqual(findRule("Markdown bold+italic"), {
     fontStyle: "bold italic",
   });
@@ -135,7 +141,8 @@ test("JS and TS const declarations fall through to fg", () => {
 test("hand-written rules take their colour from foundation roles", () => {
   assert.equal(findRule("Escape sequence").foreground, syntax.constant);
   assert.equal(findRule("Shell variable").foreground, syntax.type);
-  assert.equal(findRule("YAML key").foreground, text.fg);
+  assert.equal(findRule("YAML key").foreground, syntax.function);
+  assert.equal(findRule("Markdown inline code").foreground, syntax.parameter);
   assert.equal(findRule("Markdown link text").foreground, syntax.function);
   assert.equal(findRule("Diff inserted").foreground, semantic.success);
   assert.equal(findRule("Diff deleted").foreground, semantic.danger);
