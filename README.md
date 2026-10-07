@@ -59,13 +59,15 @@ A setting the theme does not name keeps its VS Code default. These were left out
 
 ## Contributing
 
+You need Node.js 20 or later.
+
 ```bash
 npm install
 npm run build   # regenerates themes/ and icon.png from @sepps-workshop/design-system
 npm test
 ```
 
-You need Node.js 20 or later. To preview locally, press `F5` in VS Code. That opens an Extension Development Host, where you can pick the theme. To install a local build instead, run `npm run package` and then `code --install-extension` on the `.vsix` it writes.
+To preview locally, press `F5` in VS Code. That opens an Extension Development Host, where you can pick the theme. To install a local build instead, run `npm run package` and then `code --install-extension` on the `.vsix` it writes.
 
 If a colour looks wrong, or two things are hard to tell apart, the cause is almost always in the design system and not in this port. Please open the issue [there](https://github.com/sepps-workshop/sepps-workshop-design-system/issues). A mapping mistake (the right colour on the wrong setting) belongs here.
 
