@@ -37,6 +37,18 @@ Then pick **Sepp’s Workshop** from `Preferences: Color Theme` (`Ctrl+K Ctrl+T`
 "terminal.integrated.fontFamily": "\"JetBrainsMono Nerd Font\", \"JetBrains Mono\", monospace"
 ```
 
+## Recommended file icons
+
+Themes cannot ship file icons, and the design system recommends [Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme). It covers nearly every file type VS Code recognises and is independent of the colour theme. Install it separately and leave its file icon colours as they are.
+
+```bash
+code --install-extension PKief.material-icon-theme
+```
+
+```jsonc
+"workbench.iconTheme": "material-icon-theme"
+```
+
 ## How it is built
 
 The theme file is generated. Colours, contrast ratios and the map from syntax role to colour all come from the design system. This repository only decides which token feeds which VS Code setting. It contains no colour value of its own, and a test fails if one appears.

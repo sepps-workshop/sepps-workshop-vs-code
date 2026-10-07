@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+
+- Updated to `@sepps-workshop/design-system` 0.6.0.
+
+### Added
+
+- README recommends Material Icon Theme for file icons, as the design system does.
+
 ## [0.2.0] - 2026-10-07
 
 ### Changed
