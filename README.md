@@ -5,7 +5,7 @@ One colour theme for VS Code (Visual Studio Code): dark, on a deepened sepp.med 
 There are no variants. This is the one theme.
 
 <p align="center">
-  <img src="./images/screenshot.png" width="760" alt="A TypeScript file in the Sepp’s Workshop theme" />
+  <img src="./images/screenshot.png" width="760" alt="A JavaScript file with the explorer and the integrated terminal in the Sepp’s Workshop theme" />
 </p>
 
 ## Install
