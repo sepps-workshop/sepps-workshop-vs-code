@@ -6,7 +6,7 @@ VS Code colour-theme port of the [Sepp’s Workshop design system](https://githu
 
 | File                                                         | Purpose                                                                                 |
 | ------------------------------------------------------------ | --------------------------------------------------------------------------------------- |
-| `.claude/learnings.md`                                       | TODO: add description                                                                   |
+| `.claude/learnings.md`                                       | One-line corrections from past sessions; appended to, never rewritten                   |
 | `.claude/settings.json`                                      | Permissions, secret-file guard, PostToolUse Prettier hook, env defaults                 |
 | `.claude/skills/release/SKILL.md`                            | `/release` skill: version bump → CHANGELOG → tag → push                                 |
 | `.claude/skills/sepps-workshop/SKILL.md`                     | Port-side skill: how to read foundation tokens; copied from the foundation's `handoff/` |
