@@ -1,7 +1,7 @@
 {
   "name": "sepps-workshop-theme",
   "displayName": "Sepp’s Workshop Theme",
-  "description": "One medium-dark color theme for VS Code (Visual Studio Code) on sepp.med Darkblue. WCAG AA verified.",
+  "description": "One dark color theme for VS Code (Visual Studio Code) on sepp.med Darkblue. WCAG AA verified.",
   "version": "0.1.0",
   "publisher": "sepps-workshop",
   "license": "MIT",
@@ -32,7 +32,7 @@
   ],
   "icon": "icon.png",
   "galleryBanner": {
-    "color": "#0d3174",
+    "color": "#14284c",
     "theme": "dark"
   },
   "type": "module",
@@ -45,7 +45,7 @@
     "package": "vsce package"
   },
   "devDependencies": {
-    "@sepps-workshop/design-system": "^0.3.0",
+    "@sepps-workshop/design-system": "^0.4.0",
     "@vscode/vsce": "^3.9.2",
     "prettier": "^3.9.9"
   },

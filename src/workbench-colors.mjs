@@ -101,14 +101,14 @@ export function buildWorkbenchColors(tokens) {
 
     // editor groups & tabs
     "editorGroup.border": border.subtle,
-    "editorGroup.emptyBackground": surface.bg_sunk,
-    "editorGroupHeader.tabsBackground": surface.bg_sunk,
+    "editorGroup.emptyBackground": surface.bg_chrome,
+    "editorGroupHeader.tabsBackground": surface.bg_chrome,
     "editorGroupHeader.tabsBorder": border.subtle,
-    "editorGroupHeader.noTabsBackground": surface.bg_sunk,
+    "editorGroupHeader.noTabsBackground": surface.bg_chrome,
     "tab.activeBackground": surface.bg,
     "tab.activeForeground": text.fg,
     "tab.activeBorderTop": accent,
-    "tab.inactiveBackground": surface.bg_sunk,
+    "tab.inactiveBackground": surface.bg_chrome,
     "tab.inactiveForeground": text.fg_subtle,
     "tab.unfocusedActiveForeground": text.fg_muted,
     "tab.unfocusedInactiveForeground": text.fg_subtle,
@@ -121,7 +121,7 @@ export function buildWorkbenchColors(tokens) {
     "tab.inactiveModifiedBorder": signal.warning,
 
     // activity bar
-    "activityBar.background": surface.bg_sunk,
+    "activityBar.background": surface.bg_chrome,
     "activityBar.foreground": text.fg,
     "activityBar.inactiveForeground": text.fg_subtle,
     "activityBar.activeBorder": accent,
@@ -131,7 +131,7 @@ export function buildWorkbenchColors(tokens) {
     "activityBarBadge.foreground": accent_on,
 
     // sidebar
-    "sideBar.background": surface.bg_sunk,
+    "sideBar.background": surface.bg_chrome,
     "sideBar.foreground": text.fg_muted,
     "sideBar.border": border.subtle,
     "sideBar.dropBackground": wash("active"),
@@ -140,13 +140,13 @@ export function buildWorkbenchColors(tokens) {
     "sideBarSectionHeader.foreground": text.fg_muted,
     "sideBarSectionHeader.border": border.subtle,
 
-    // status bar — stays on the sunk surface so VS Code's own state signals
+    // status bar — stays on the chrome surface so VS Code's own state signals
     // stand out. The accent is a strip along the top edge, never the fill;
     // statusBar.noFolderBorder removes the strip when no folder is open.
-    "statusBar.background": surface.bg_sunk,
+    "statusBar.background": surface.bg_chrome,
     "statusBar.foreground": text.fg,
     "statusBar.border": accent,
-    "statusBar.noFolderBackground": surface.bg_sunk,
+    "statusBar.noFolderBackground": surface.bg_chrome,
     "statusBar.noFolderForeground": text.fg,
     "statusBar.noFolderBorder": border.subtle,
     // Red as a fill is the danger fill with white text. The accent is already
@@ -177,9 +177,9 @@ export function buildWorkbenchColors(tokens) {
     "terminalCommandDecoration.errorBackground": signal.error,
 
     // title bar
-    "titleBar.activeBackground": surface.bg_sunk,
+    "titleBar.activeBackground": surface.bg_chrome,
     "titleBar.activeForeground": text.fg,
-    "titleBar.inactiveBackground": surface.bg_sunk,
+    "titleBar.inactiveBackground": surface.bg_chrome,
     "titleBar.inactiveForeground": text.fg_subtle,
     "titleBar.border": border.subtle,
 
@@ -287,7 +287,7 @@ export function buildWorkbenchColors(tokens) {
     "notifications.foreground": text.fg,
     "notifications.border": border.default,
     "notificationCenter.border": border.default,
-    "notificationCenterHeader.background": surface.bg_sunk,
+    "notificationCenterHeader.background": surface.bg_chrome,
     "notificationCenterHeader.foreground": text.fg,
     "notificationToast.border": border.default,
     "notificationLink.foreground": link,
@@ -295,9 +295,9 @@ export function buildWorkbenchColors(tokens) {
     "notificationsWarningIcon.foreground": signal.warning,
     "notificationsInfoIcon.foreground": signal.info,
 
-    // panel (terminal/output container) — chrome, so it sits on bg_sunk
+    // panel (terminal/output container) — chrome, so it sits on bg_chrome
     // with the sidebar and the status bar. Section headers take the canvas.
-    "panel.background": surface.bg_sunk,
+    "panel.background": surface.bg_chrome,
     "panel.border": border.subtle,
     "panel.dropBorder": accent,
     "panelTitle.activeBorder": accent,
@@ -308,10 +308,11 @@ export function buildWorkbenchColors(tokens) {
     "panelSectionHeader.background": surface.bg,
     "panelSectionHeader.foreground": text.fg,
 
-    // terminal — bg_terminal is the canvas: the Darkblue people recognise.
+    // terminal — embedded in the editor window, so it sits on the canvas
+    // like the code; the panel's Darkblue title row separates the two.
     // No selection foreground: the foundation gates ANSI on the selection.
     "terminal.foreground": text.fg,
-    "terminal.background": surface.bg_terminal,
+    "terminal.background": surface.bg,
     "terminal.border": border.subtle,
     "terminal.selectionBackground": wash("selection"),
     "terminal.inactiveSelectionBackground": wash("selection_inactive"),
@@ -320,7 +321,7 @@ export function buildWorkbenchColors(tokens) {
     "terminal.findMatchHighlightBackground": wash("find_match_other"),
     "terminal.findMatchHighlightBorder": overlay.find_match_other.border,
     "terminalCursor.foreground": accent,
-    "terminalCursor.background": surface.bg_terminal,
+    "terminalCursor.background": surface.bg,
     "terminal.ansiBlack": ansi.black,
     "terminal.ansiRed": ansi.red,
     "terminal.ansiGreen": ansi.green,
@@ -376,13 +377,13 @@ export function buildWorkbenchColors(tokens) {
     "peekViewEditor.matchHighlightBackground": wash("find_match"),
     "peekViewEditor.matchHighlightBorder": overlay.find_match.border,
     "peekViewEditorGutter.background": surface.bg,
-    "peekViewResult.background": surface.bg_sunk,
+    "peekViewResult.background": surface.bg_chrome,
     "peekViewResult.fileForeground": text.fg,
     "peekViewResult.lineForeground": text.fg_muted,
     "peekViewResult.matchHighlightBackground": wash("find_match"),
     "peekViewResult.selectionBackground": wash("selected_item"),
     "peekViewResult.selectionForeground": text.fg,
-    "peekViewTitle.background": surface.bg_sunk,
+    "peekViewTitle.background": surface.bg_chrome,
     "peekViewTitleDescription.foreground": text.fg_subtle,
     "peekViewTitleLabel.foreground": text.fg,
 
@@ -409,7 +410,7 @@ export function buildWorkbenchColors(tokens) {
     "editorHoverWidget.background": surface.bg_overlay,
     "editorHoverWidget.border": border.default,
     "editorHoverWidget.foreground": text.fg,
-    "editorHoverWidget.statusBarBackground": surface.bg_sunk,
+    "editorHoverWidget.statusBarBackground": surface.bg_chrome,
 
     // quick input (Ctrl+P, Ctrl+Shift+P)
     "quickInput.background": surface.bg_overlay,
@@ -417,7 +418,7 @@ export function buildWorkbenchColors(tokens) {
     "quickInputList.focusBackground": wash("selected_item"),
     "quickInputList.focusForeground": text.fg,
     "quickInputList.focusIconForeground": text.fg,
-    "quickInputTitle.background": surface.bg_sunk,
+    "quickInputTitle.background": surface.bg_chrome,
     "pickerGroup.foreground": accent,
     "pickerGroup.border": border.subtle,
 
@@ -425,9 +426,9 @@ export function buildWorkbenchColors(tokens) {
     // the accent is for focus and identity.
     "textLink.foreground": link,
     "textLink.activeForeground": link,
-    "textBlockQuote.background": surface.bg_sunk,
+    "textBlockQuote.background": surface.bg_chrome,
     "textBlockQuote.border": accent,
-    "textCodeBlock.background": surface.bg_sunk,
+    "textCodeBlock.background": surface.bg_chrome,
     "textPreformat.foreground": tokens.syntax.string,
     "textSeparator.foreground": border.subtle,
 
@@ -479,11 +480,11 @@ export function buildWorkbenchColors(tokens) {
 
     // welcome page
     "welcomePage.background": surface.bg,
-    "welcomePage.tileBackground": surface.bg_sunk,
+    "welcomePage.tileBackground": surface.bg_chrome,
     "welcomePage.tileHoverBackground": wash("hover"),
-    "welcomePage.progress.background": surface.bg_sunk,
+    "welcomePage.progress.background": surface.bg_chrome,
     "welcomePage.progress.foreground": accent,
-    "walkThrough.embeddedEditorBackground": surface.bg_sunk,
+    "walkThrough.embeddedEditorBackground": surface.bg_chrome,
 
     // charts — the brand has no purple; charts.purple stays at the default.
     "charts.foreground": text.fg,
@@ -506,7 +507,7 @@ export function buildWorkbenchColors(tokens) {
     "notebook.focusedEditorBorder": accent,
     "notebook.inactiveFocusedCellBorder": border.default,
     "notebook.inactiveSelectedCellBorder": border.default,
-    "notebook.outputContainerBackgroundColor": surface.bg_sunk,
+    "notebook.outputContainerBackgroundColor": surface.bg_chrome,
     "notebook.selectedCellBackground": wash("active"),
     "notebook.selectedCellBorder": border.default,
     "notebook.symbolHighlightBackground": wash("word_highlight"),

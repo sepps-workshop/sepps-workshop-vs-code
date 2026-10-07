@@ -7,7 +7,7 @@
 
 ## Goal
 
-A VS Code colour theme extension that renders the Sepp’s Workshop foundation: one medium-dark theme on sepp.med Darkblue, with no variants. Every colour in the shipped theme file is a value the foundation publishes. The port decides which token feeds which VS Code key and nothing else.
+A VS Code colour theme extension that renders the Sepp’s Workshop foundation: one dark theme on sepp.med Darkblue, with no variants. Every colour in the shipped theme file is a value the foundation publishes. The port decides which token feeds which VS Code key and nothing else.
 
 The repository has the same shape as the Vivid Life port, so that someone who knows one can work in the other.
 
@@ -94,10 +94,10 @@ The mapping follows the blueprint key by key. These are the places where it diff
 | Area                                                                  | Mapping                                                                                                              | Why                                                                                      |
 | --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | Editor, active tab, peek editor, notebook                             | `surface.bg`                                                                                                         | Content surfaces                                                                         |
-| Sidebar, activity bar, status bar, title bar, tab strip, panel        | `surface.bg_sunk`                                                                                                    | Chrome surfaces                                                                          |
+| Sidebar, activity bar, status bar, title bar, tab strip, panel        | `surface.bg_chrome`                                                                                                  | Chrome surfaces                                                                          |
 | Menus, widgets, quick input, notifications                            | `surface.bg_overlay`                                                                                                 | Floating widgets sit on the darker surface                                               |
 | Inputs, dropdowns, checkboxes                                         | `surface.bg_soft`, outline `border.control`, placeholder `fg_muted`                                                  | `bg_soft` carries `fg` and `fg_muted` only, so the placeholder steps up from `fg_subtle` |
-| Terminal                                                              | `surface.bg_terminal`, the sixteen `ansi.*`, selection `overlay.selection`                                           | No selection foreground: the foundation gates ANSI on the selection                      |
+| Terminal                                                              | `surface.bg`, the sixteen `ansi.*`, selection `overlay.selection`                                                    | No selection foreground: the foundation gates ANSI on the selection                      |
 | Selection, line highlight                                             | `overlay.selection`, `selection_inactive`, `line_highlight`                                                          | Recipes darken                                                                           |
 | Find                                                                  | `overlay.find_match` and `find_match_other`, each with its border                                                    | Border separates them from selection                                                     |
 | Word, selection and symbol highlight                                  | `overlay.word_highlight`; write access and bracket match use `word_highlight_strong` with its border                 |                                                                                          |
@@ -110,7 +110,7 @@ The mapping follows the blueprint key by key. These are the places where it diff
 | Merge editor                                                          | current: `merge_current_*`; incoming: `diff_inserted_line` and `merge_incoming_header`; common: `hover` and `active` |                                                                                          |
 | Debugger                                                              | both frame keys: `overlay.stack_frame`; top-frame arrow `semantic.warning`, focused-frame arrow `semantic.success`   | One recipe, two shapes                                                                   |
 | Errors, warnings, info, hints, git states, bracket pairs              | `workbench_color_roles`, applied to squiggle, gutter, overview ruler, minimap, problems, file tree alike             | Hints are `fg_muted`, ignored files `fg_disabled`                                        |
-| Status bar                                                            | background `bg_sunk`, top border `accent`, no-folder border `border.subtle`                                          | Accent is a border, never the bar's fill                                                 |
+| Status bar                                                            | background `bg_chrome`, top border `accent`, no-folder border `border.subtle`                                        | Accent is a border, never the bar's fill                                                 |
 | Debugging status bar, error and offline items                         | `semantic_fill.danger` fill and text                                                                                 | Red as a fill is Signalred with white text                                               |
 | Warning and prominent items                                           | `semantic_fill.warning` fill and text                                                                                |                                                                                          |
 | Remote indicator                                                      | `ansi.cyan` with `accent_on` text (6.70:1)                                                                           | Distinct from the bar, the accent badges and the danger fill                             |
@@ -174,9 +174,9 @@ All expected values come from the tokens, none from the blueprint's tests.
 3. **No `tokenColors` rule ends in a `meta.*` scope.**
 4. **Styles survive.** Comment, parameter and attribute rules are italic; `emphasis` and `strong` have no foreground; `operator` is `fg_muted`; `lang_var` is the keyword colour, italic.
 5. **Semantic tokens.** `parameter` is italic, `class` and `type` have `fontStyle: ""`, no rule exists for a `"none"` modifier.
-6. **Contrast of port-specific pairs,** at 4.5:1 for text and 3:1 for non-text: status bar text; remote, error, warning and debugging items; badges and buttons including hover; text and match highlight on selected rows; git and diagnostic colours on hovered and inactive-selected rows over `bg_sunk`; inactive tab text; placeholder on inputs; code text on stacked diff spans; focus ring on every surface.
+6. **Contrast of port-specific pairs,** at 4.5:1 for text and 3:1 for non-text: status bar text; remote, error, warning and debugging items; badges and buttons including hover; text and match highlight on selected rows; git and diagnostic colours on hovered and inactive-selected rows over `bg_chrome`; inactive tab text; placeholder on inputs; code text on stacked diff spans; focus ring on every surface.
 7. **Translucency.** Every key VS Code documents as "must not be opaque" that the theme sets has an eight-digit value.
-8. **Surfaces.** Panel, sidebar and status bar differ from the editor background; the terminal background equals `surface.bg_terminal`.
+8. **Surfaces.** Panel, sidebar and status bar differ from the editor background; the terminal background equals `surface.bg` and differs from the panel around it.
 9. **Manifest and build.** The manifest's theme path exists, its label equals the theme's `name`, the banner colour equals `surface.bg`, and the committed theme file equals a fresh `buildTheme(tokens)`.
 
 ## README

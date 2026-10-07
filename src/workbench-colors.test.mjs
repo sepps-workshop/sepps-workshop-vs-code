@@ -9,7 +9,7 @@ const { text, surface, syntax, semantic } = tokens;
 
 /* ── Workbench: surfaces and state ───────────────────────────────── */
 
-test("content sits on the canvas, chrome on the sunk surface", () => {
+test("content and terminal sit on the canvas, chrome on Darkblue", () => {
   assert.equal(colors["editor.background"], surface.bg);
   assert.equal(colors["tab.activeBackground"], surface.bg);
   for (const key of [
@@ -20,9 +20,10 @@ test("content sits on the canvas, chrome on the sunk surface", () => {
     "panel.background",
     "tab.inactiveBackground",
   ])
-    assert.equal(colors[key], surface.bg_sunk, key);
+    assert.equal(colors[key], surface.bg_chrome, key);
   assert.notEqual(colors["panel.background"], colors["editor.background"]);
-  assert.equal(colors["terminal.background"], surface.bg_terminal);
+  assert.equal(colors["terminal.background"], surface.bg);
+  assert.notEqual(colors["terminal.background"], colors["panel.background"]);
   assert.equal(
     colors["terminalCursor.background"],
     colors["terminal.background"],
@@ -30,7 +31,7 @@ test("content sits on the canvas, chrome on the sunk surface", () => {
 });
 
 test("the status bar is neutral; the accent is its border", () => {
-  assert.equal(colors["statusBar.background"], surface.bg_sunk);
+  assert.equal(colors["statusBar.background"], surface.bg_chrome);
   assert.equal(colors["statusBar.border"], tokens.accent);
   assert.notEqual(colors["statusBar.noFolderBorder"], tokens.accent);
   assert.equal(

@@ -1,6 +1,6 @@
 # Sepp’s Workshop for VS Code
 
-One colour theme for VS Code (Visual Studio Code): medium-dark, on sepp.med Darkblue, with Sunset yellow as the accent. The colours come from the [Sepp’s Workshop design system](https://github.com/sepps-workshop/sepps-workshop-design-system), whose build refuses to ship a text colour that fails WCAG AA on its surface. The tests here check the combinations this theme adds on top: code on diff, merge and selection backgrounds, and text on selected rows.
+One colour theme for VS Code (Visual Studio Code): dark, on a deepened sepp.med Darkblue framed by Darkblue itself, with Sunset yellow as the accent. The colours come from the [Sepp’s Workshop design system](https://github.com/sepps-workshop/sepps-workshop-design-system), whose build refuses to ship a text colour that fails WCAG AA on its surface. The tests here check the combinations this theme adds on top: code on diff, merge and selection backgrounds, and text on selected rows.
 
 There are no variants. This is the one theme.
 

@@ -6,6 +6,7 @@ VS Code colour-theme port of the [Sepp’s Workshop design system](https://githu
 
 | File                                                         | Purpose                                                                                 |
 | ------------------------------------------------------------ | --------------------------------------------------------------------------------------- |
+| `.claude/learnings.md`                                       | TODO: add description                                                                   |
 | `.claude/settings.json`                                      | Permissions, secret-file guard, PostToolUse Prettier hook, env defaults                 |
 | `.claude/skills/release/SKILL.md`                            | `/release` skill: version bump → CHANGELOG → tag → push                                 |
 | `.claude/skills/sepps-workshop/SKILL.md`                     | Port-side skill: how to read foundation tokens; copied from the foundation's `handoff/` |
@@ -54,9 +55,9 @@ After cloning, run `git config core.hooksPath .githooks` to enable the pre-commi
 - **No colour in this repository.** No hex value and no alpha arithmetic in `src/`. Translucent values are `overlay.<name>.hexa`; opaque ones are token values. A test fails on any `#` in the template sources and on any theme colour the foundation does not publish.
 - **Foundation gaps go upstream.** A value the port needs and cannot find is fixed in `sepps-workshop-design-system`, not approximated here. A VS Code key with no role stays at its default; list it in the README.
 - **Resolve role names with `resolveTarget`.** It throws on an unknown name; do not add a fallback.
-- **Content surfaces vs. chrome surfaces.** `surface.bg` for panes the user reads or edits (editor, active tab, peek editor, notebook); `surface.bg_sunk` for panes that frame them (sidebar, activity bar, status bar, title bar, tab strip, panel).
+- **Content surfaces vs. chrome surfaces.** `surface.bg` for panes the user reads or edits (editor, active tab, peek editor, notebook, integrated terminal); `surface.bg_chrome` for panes that frame them (sidebar, activity bar, status bar, title bar, tab strip, panel). The panel's title row is the chrome strip that separates the terminal from the editor.
 - **`bg_soft` and `overlay.selected_item` carry `fg` and `fg_muted` only.** Rows or controls that show git, diagnostic or syntax colours take a darkening overlay (`hover`, `active`).
-- **The status bar stays on `bg_sunk`.** The accent is its top border. Debugging and error items use the danger fill with its white text; warning items use the warning fill.
+- **The status bar stays on `bg_chrome`.** The accent is its top border. Debugging and error items use the danger fill with its white text; warning items use the warning fill.
 - **Never colour alone.** A state colour comes with a border, an underline, a position or a font style.
 - **Determinism.** Same tokens in, byte-identical theme out. `npm test` fails if `themes/` or `icon.png` is stale.
 - **Writing.** The product name is written "Sepp’s Workshop" with a typographic apostrophe, the company "sepp.med gmbh". Docs are English, exact where technical, no emoji.
