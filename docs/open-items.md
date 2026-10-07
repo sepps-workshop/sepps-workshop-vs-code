@@ -17,8 +17,8 @@ State after the initial port (2026-10-02, `main` at v0.1.0, pushed, not publishe
 ## Upstream, in `sepps-workshop-design-system`
 
 - [ ] `punct` scopes catch string quotes and comment markers. The port overrides this ("String quotes", "Comment markers", "Regex delimiters", docstring selector); fix the scope recommendation and drop the overrides.
-- [ ] Gate ANSI colours on the find-match overlays, as on the terminal selection. ANSI blue measures 4.14:1 on `find_match` and 4.39:1 on `find_match_other`.
-- [ ] Document that `bg_soft` carries `fg` and `fg_muted` only (link is 4.42:1, `fg_subtle` 4.06:1).
+- [ ] Gate ANSI colours on the find-match overlays, as on the terminal selection. ANSI blue measures 4.29:1 on `find_match`; on `find_match_other` it reaches 4.55:1 since foundation 0.3.0.
+- [ ] Document that `bg_soft` carries `fg` and `fg_muted` only (`fg_subtle` is 4.06:1; link reaches 4.94:1 since foundation 0.3.0).
 
 ## Vivid Life
 
@@ -33,7 +33,7 @@ State after the initial port (2026-10-02, `main` at v0.1.0, pushed, not publishe
 - [ ] The bracket-border test passes by coincidence of values.
 - [ ] The translucency list in `CLAUDE.md` is incomplete.
 - [ ] The publish workflow keeps `npm install -g npm@latest` although it only runs `vsce publish`, and it does not check the tag against the manifest version.
-- [ ] The "every colour is published" test does not catch misuse (Signalred as text, an opaque `.hex` where a wash belongs).
+- [ ] The "every colour is published" test does not catch misuse (Racing Red as text, an opaque `.hex` where a wash belongs).
 - [ ] A future overlay border read placed before its `wash()` would throw an anonymous TypeError.
 
 ---

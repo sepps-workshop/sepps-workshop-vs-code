@@ -149,7 +149,7 @@ export function buildWorkbenchColors(tokens) {
     "statusBar.noFolderBackground": surface.bg_sunk,
     "statusBar.noFolderForeground": text.fg,
     "statusBar.noFolderBorder": border.subtle,
-    // Red as a fill is Signalred with white text. The accent is already
+    // Red as a fill is the danger fill with white text. The accent is already
     // yellow, so debugging takes the danger fill, not the warning one.
     "statusBar.debuggingBackground": dangerFill.fill,
     "statusBar.debuggingForeground": dangerFill.text,
