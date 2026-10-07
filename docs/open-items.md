@@ -14,8 +14,6 @@ State after the initial port (2026-10-02, `main` at v0.1.0, pushed, not publishe
 - [ ] Decide on `CLAUDE_CODE_MAX_OUTPUT_TOKENS` (16000) in `.claude/settings.json`. It was copied from the Vivid Life port and made a review agent fail once.
 - [ ] After the visual check: log anything the theme got wrong about the foundation in `.claude/learnings.md`.
 
-- [ ] Copy the foundation's `handoff/SKILL.md` to `.claude/skills/sepps-workshop/SKILL.md` (`bg_sunk` is now `bg_chrome`).
-
 ## Upstream, in `sepps-workshop-design-system`
 
 - [ ] `punct` scopes catch string quotes and comment markers. The port overrides this ("String quotes", "Comment markers", "Regex delimiters", docstring selector); fix the scope recommendation and drop the overrides.
