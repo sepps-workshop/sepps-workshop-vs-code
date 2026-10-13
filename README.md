@@ -51,7 +51,8 @@ Nobody typed this theme by hand, not even me. The theme file is generated. Colou
 A few things follow from the palette and are deliberate:
 
 - Three hues carry the syntax (yellow, orange, cyan-blue), each at two lightness steps, with italics as a third axis. The brand has no more hues that stay apart on Darkblue.
-- Selection and the current line darken the canvas. A lighter selection would cost contrast.
+- Selection and the current line darken the canvas. A lighter selection would cost contrast, so the selection is Darkblack at full strength: as far from the canvas as the palette allows.
+- Types are types: `int` and `bool` take the same pale yellow as `List` or `std::string`, in C#, C, C++, Java and Go as in TypeScript, Python and Rust. Keywords such as `if`, `return` and `class` stay Sunset.
 - Red and green are signals only: errors, additions, removals. Neither colours any syntax.
 - The status bar stays neutral. The yellow strip along its top edge means a folder is open. While debugging, the bar turns red.
 

@@ -45,7 +45,7 @@
     "package": "vsce package"
   },
   "devDependencies": {
-    "@sepps-workshop/design-system": "^0.10.2",
+    "@sepps-workshop/design-system": "^0.11.0",
     "@vscode/vsce": "^4.0.0",
     "prettier": "^3.9.9"
   },
