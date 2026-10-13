@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-10-13
+
 ### Changed
 
 - Updated to `@sepps-workshop/design-system` 0.11.0.
