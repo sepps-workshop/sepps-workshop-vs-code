@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+
+- Updated to `@sepps-workshop/design-system` 0.10.2. The theme's colours are unchanged by it.
+- Format placeholders, such as `{name}` in a Python f-string, take the escape-sequence colour instead of the string colour.
+
 ## [0.2.2] - 2026-10-13
 
 ### Changed

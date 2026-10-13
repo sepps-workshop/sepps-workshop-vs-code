@@ -63,9 +63,11 @@ function buildTokenColors(tokens) {
       ],
       "keyword",
     ),
+    // Format placeholders ({name} in a Python f-string) sit in the string
+    // like an escape and take the same colour.
     rule(
       "Escape sequence",
-      ["constant.character.escape"],
+      ["constant.character.escape", "constant.character.format.placeholder"],
       tokens.shell_roles.escape.color,
     ),
     rule(
