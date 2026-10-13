@@ -138,6 +138,11 @@ test("JS and TS const declarations fall through to fg", () => {
   assert.deepEqual(findRule("fg_fallthrough_jsts"), { foreground: text.fg });
 });
 
+test("format placeholders share the escape sequence rule", () => {
+  const rule = theme.tokenColors.find((r) => r.name === "Escape sequence");
+  assert.ok(rule.scope.includes("constant.character.format.placeholder"));
+});
+
 test("hand-written rules take their colour from foundation roles", () => {
   assert.equal(findRule("Escape sequence").foreground, syntax.constant);
   assert.equal(findRule("Shell variable").foreground, syntax.type);
