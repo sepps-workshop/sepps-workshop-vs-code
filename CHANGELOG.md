@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+
+- README rewritten in a friendlier voice: Sepp, the robot the theme is named after, now introduces it. The instructions are unchanged. The file icon and font recommendations are merged into one section.
+
 ## [0.2.1] - 2026-10-07
 
 ### Changed

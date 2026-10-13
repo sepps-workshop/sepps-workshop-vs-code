@@ -9,9 +9,9 @@
   <img src="https://img.shields.io/badge/license-MIT-b2b2b2" alt="MIT license" />
 </p>
 
-One dark colour theme for VS Code (Visual Studio Code), built on sepp.med Darkblue with Sunset yellow as the accent. The editor sits on a deepened Darkblue, framed by Darkblue itself. There are no variants and no settings to wrestle with: this is the one theme.
+Hi, I’m Sepp, the small blue robot from [sepp.med](https://www.seppmed.com). This is the theme I built for VS Code (Visual Studio Code): one dark colour theme on sepp.med Darkblue, with Sunset yellow as the accent. Your code sits on a deepened Darkblue, and Darkblue itself frames it. There are no variants and no settings to wrestle with. I made one theme, and I stand by it.
 
-The colours come from the [Sepp’s Workshop design system](https://github.com/sepps-workshop/sepps-workshop-design-system), whose build refuses to ship a text colour that fails WCAG AA on its surface. The tests in this repository check the combinations the theme adds on top: code on diff, merge and selection backgrounds, and text on selected rows.
+I have optical sensors, and I still do not pick colours by eye. They all come from the [Sepp’s Workshop design system](https://github.com/sepps-workshop/sepps-workshop-design-system), whose build refuses to ship a text colour that fails WCAG AA on its surface. The tests in this repository check the combinations the theme adds on top: code on diff, merge and selection backgrounds, and text on selected rows.
 
 <p align="center">
   <img src="./images/screenshot.png" width="760" alt="A JavaScript file with the explorer and the integrated terminal in the Sepp’s Workshop theme" />
@@ -25,33 +25,28 @@ Install it from the [VS Code Marketplace](https://marketplace.visualstudio.com/i
 code --install-extension sepps-workshop.sepps-workshop-theme
 ```
 
-Then pick **Sepp’s Workshop** from `Preferences: Color Theme` (`Ctrl+K Ctrl+T`, or `Cmd+K Cmd+T` on macOS).
+Then pick **Sepp’s Workshop** from `Preferences: Color Theme` (`Ctrl+K Ctrl+T`, or `Cmd+K Cmd+T` on macOS). That is the whole installation. You can go back to work now, or keep reading.
 
 ## Recommended companions
 
-- **File icons**: [Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme). The theme ships no file icons; Material covers nearly every file type VS Code recognises. Leave the file icons in their own colours, they encode the file type.
-- **Font**: themes cannot ship fonts. The design system recommends [JetBrains Mono](https://www.jetbrains.com/lp/mono/) for the editor, and [JetBrainsMono Nerd Font](https://www.nerdfonts.com/font-downloads) for the integrated terminal if your prompt shows icons.
+A colour theme cannot ship file icons or fonts, so here is what the design system recommends to go with it.
 
-```jsonc
-"editor.fontFamily": "\"JetBrains Mono\", \"Cascadia Code\", Consolas, monospace",
-"terminal.integrated.fontFamily": "\"JetBrainsMono Nerd Font\", \"JetBrains Mono\", monospace"
-```
-
-## Recommended file icons
-
-Themes cannot ship file icons, and the design system recommends [Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme). It covers nearly every file type VS Code recognises and is independent of the colour theme. Install it separately and leave its file icon colours as they are.
+- **File icons**: [Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme). It covers nearly every file type VS Code recognises and is independent of the colour theme. Install it separately and leave its icon colours as they are: they encode the file type.
+- **Font**: [JetBrains Mono](https://www.jetbrains.com/lp/mono/) for the editor, and [JetBrainsMono Nerd Font](https://www.nerdfonts.com/font-downloads) for the integrated terminal if your prompt shows icons.
 
 ```bash
 code --install-extension PKief.material-icon-theme
 ```
 
 ```jsonc
-"workbench.iconTheme": "material-icon-theme"
+"workbench.iconTheme": "material-icon-theme",
+"editor.fontFamily": "\"JetBrains Mono\", \"Cascadia Code\", Consolas, monospace",
+"terminal.integrated.fontFamily": "\"JetBrainsMono Nerd Font\", \"JetBrains Mono\", monospace"
 ```
 
 ## How it is built
 
-The theme file is generated. Colours, contrast ratios and the map from syntax role to colour all come from the design system. This repository only decides which token feeds which VS Code setting. It contains no colour value of its own, and a test fails if one appears.
+Nobody typed this theme by hand, not even me. The theme file is generated. Colours, contrast ratios and the map from syntax role to colour all come from the design system. This repository only decides which token feeds which VS Code setting. It contains no colour value of its own, and a test fails if one appears.
 
 A few things follow from the palette and are deliberate:
 
@@ -72,7 +67,7 @@ A setting the theme does not name keeps its VS Code default. These were left out
 
 ## Contributing
 
-You need Node.js 20 or later.
+Want to tinker? You need Node.js 20 or later.
 
 ```bash
 npm install
@@ -82,7 +77,7 @@ npm test
 
 To preview locally, press `F5` in VS Code. That opens an Extension Development Host, where you can pick the theme. To install a local build instead, run `npm run package` and then `code --install-extension` on the `.vsix` it writes.
 
-If a colour looks wrong, or two things are hard to tell apart, the cause is almost always in the design system and not in this port. Please open the issue [there](https://github.com/sepps-workshop/sepps-workshop-design-system/issues). A mapping mistake (the right colour on the wrong setting) belongs here.
+If a colour looks wrong, or two things are hard to tell apart, the cause is almost always in the design system and not in this port. Please open the issue [there](https://github.com/sepps-workshop/sepps-workshop-design-system/issues). A mapping mistake (the right colour on the wrong setting) belongs here. Either way, I would rather hear about it than have you squint.
 
 ## License
 
@@ -92,6 +87,8 @@ MIT. See [LICENSE](./LICENSE).
 
 <img align="right" width="150" src="./images/sepp-recruiting.png" alt="Sepp, the blue robot, holding a sign that reads Be you – with us!" />
 
-sepp.med builds and tests software for places where a bug is more than an inconvenience: medical devices, cars, aircraft. We have been doing it since 1980, as a family-run company in the Nuremberg metropolitan region. If you would rather get the contrast ratio right than argue about it, you might like it here.
+My humans at sepp.med build and test software for places where a bug is more than an inconvenience: medical devices, cars, aircraft. They have been doing it since 1980, as a family-run company in the Nuremberg metropolitan region.
 
-Browse the [open positions](https://www.seppmed.com/career/open-positions/), or send a [speculative application](https://www.seppmed.com/career/speculative-application/) if none of them fits yet. Be you – with us.
+Do you care whether a contrast ratio is 4.4 or 4.5? Did you read this README all the way to the bottom? Then you would get on well with them. Have a look at the [open positions](https://www.seppmed.com/career/open-positions/), or send a [speculative application](https://www.seppmed.com/career/speculative-application/) if none of them fits yet. I will keep the workbench tidy until you arrive.
+
+Be you – with us.
