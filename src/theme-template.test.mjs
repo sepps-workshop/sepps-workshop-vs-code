@@ -139,6 +139,9 @@ test("JS and TS const declarations fall through to fg", () => {
 });
 
 test("primitive types take the type colour, not the keyword colour", () => {
+  const rule = theme.tokenColors.find((r) => r.name === "primitive_type");
+  assert.ok(rule.scope.includes("keyword.type"), "C# int, bool");
+  assert.ok(rule.scope.includes("storage.type.built-in"), "C, C++ int, bool");
   assert.equal(findRule("primitive_type").foreground, syntax.type);
   assert.notEqual(syntax.type, syntax.keyword);
 });
