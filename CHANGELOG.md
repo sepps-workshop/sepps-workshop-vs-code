@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.3.1] - 2026-10-14
+
+### Changed
+
+- Chat request bubbles use `bg_soft` instead of a darkening wash, so they stand out from the editor and chrome backgrounds while still carrying links and inline code.
+
 ## [0.3.0] - 2026-10-13
 
 ### Changed
