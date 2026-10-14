@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
-- Token rules for extended slots without a style set `fontStyle: ""`, as the foundation's table intends. Documentation keywords such as `@param`, CSS class and attribute selectors and shebang lines no longer inherit the italic of the comment or attribute rule around them.
+- Documentation keywords such as `@param`, CSS class and attribute selectors and shebang lines no longer inherit the italic of the comment or attribute rule around them, as the foundation's table intends. A slot without a style that sits inside a styled slot sets `fontStyle: ""`; inline code and links in bold or italic Markdown keep that style.
 - The diff hunk header colours its line ranges (`-1,3 +1,4`), not only the `@@` markers.
 - Hand-written rules that repeated a generated slot are gone (YAML key, Markdown link text, Markdown inline code, the at-rule keyword). The colours are unchanged.
 - The publish workflow checks the tag against the manifest version and no longer installs the latest npm.

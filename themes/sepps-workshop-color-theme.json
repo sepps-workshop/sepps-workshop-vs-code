@@ -564,8 +564,7 @@
         "variable.other"
       ],
       "settings": {
-        "foreground": "#e7eaf1",
-        "fontStyle": ""
+        "foreground": "#e7eaf1"
       }
     },
     {
@@ -576,8 +575,7 @@
         "support.type.property-name"
       ],
       "settings": {
-        "foreground": "#e7eaf1",
-        "fontStyle": ""
+        "foreground": "#e7eaf1"
       }
     },
     {
@@ -587,8 +585,7 @@
         "keyword.symbol"
       ],
       "settings": {
-        "foreground": "#b6c1d5",
-        "fontStyle": ""
+        "foreground": "#b6c1d5"
       }
     },
     {
@@ -623,8 +620,7 @@
         "entity.name.scope-resolution"
       ],
       "settings": {
-        "foreground": "#fde399",
-        "fontStyle": ""
+        "foreground": "#fde399"
       }
     },
     {
@@ -642,8 +638,7 @@
         "storage.type.uintptr.go"
       ],
       "settings": {
-        "foreground": "#fde399",
-        "fontStyle": ""
+        "foreground": "#fde399"
       }
     },
     {
@@ -653,8 +648,7 @@
         "support.function.macro"
       ],
       "settings": {
-        "foreground": "#80c7e7",
-        "fontStyle": ""
+        "foreground": "#80c7e7"
       }
     },
     {
@@ -664,8 +658,7 @@
         "entity.name.lifetime.rust"
       ],
       "settings": {
-        "foreground": "#f29452",
-        "fontStyle": ""
+        "foreground": "#f29452"
       }
     },
     {
@@ -687,8 +680,7 @@
         "string.other.link"
       ],
       "settings": {
-        "foreground": "#80c7e7",
-        "fontStyle": ""
+        "foreground": "#80c7e7"
       }
     },
     {
@@ -709,8 +701,7 @@
         "keyword.other.unit"
       ],
       "settings": {
-        "foreground": "#f29452",
-        "fontStyle": ""
+        "foreground": "#f29452"
       }
     },
     {
@@ -720,8 +711,7 @@
         "constant.other.color.rgb-value.css"
       ],
       "settings": {
-        "foreground": "#f7c29c",
-        "fontStyle": ""
+        "foreground": "#f7c29c"
       }
     },
     {
@@ -774,8 +764,7 @@
         "markup.raw.block"
       ],
       "settings": {
-        "foreground": "#b3ddf1",
-        "fontStyle": ""
+        "foreground": "#b3ddf1"
       }
     },
     {
@@ -785,8 +774,7 @@
         "entity.name.tag.yaml"
       ],
       "settings": {
-        "foreground": "#80c7e7",
-        "fontStyle": ""
+        "foreground": "#80c7e7"
       }
     },
     {
@@ -846,8 +834,7 @@
         "support.type.event"
       ],
       "settings": {
-        "foreground": "#80c7e7",
-        "fontStyle": ""
+        "foreground": "#80c7e7"
       }
     },
     {

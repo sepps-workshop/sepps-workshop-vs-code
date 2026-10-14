@@ -211,11 +211,33 @@ const MUST_BE_TRANSLUCENT = [
   "terminal.hoverHighlightBackground",
   "terminalOverviewRuler.findMatchForeground",
 ];
+// Of those, the keys the theme leaves at VS Code's default.
+const LEFT_AT_DEFAULT = [
+  "chat.findMatchHighlightBackground",
+  "editor.findRangeHighlightBorder",
+  "editor.foldBackground",
+  "editor.wordHighlightTextBackground",
+  "editorError.background",
+  "editorGroup.dropBackground",
+  "editorInfo.background",
+  "editorOverviewRuler.findMatchForeground",
+  "editorOverviewRuler.rangeHighlightForeground",
+  "editorOverviewRuler.selectionHighlightForeground",
+  "editorOverviewRuler.wordHighlightForeground",
+  "editorOverviewRuler.wordHighlightStrongForeground",
+  "editorOverviewRuler.wordHighlightTextForeground",
+  "editorWarning.background",
+  "panelSection.dropBackground",
+  "terminal.dropBackground",
+  "terminal.hoverHighlightBackground",
+  "terminalOverviewRuler.findMatchForeground",
+];
 
-test("keys VS Code requires to be translucent are translucent where set", () => {
-  const set = MUST_BE_TRANSLUCENT.filter((key) => key in colors);
-  assert.ok(set.length >= 22, `only ${set.length} of them set`);
-  for (const key of set) assert.match(colors[key], /^#[0-9a-f]{8}$/, key);
+test("keys VS Code requires to be translucent are translucent or unset", () => {
+  for (const key of MUST_BE_TRANSLUCENT)
+    if (LEFT_AT_DEFAULT.includes(key))
+      assert.ok(!(key in colors), `${key} is set`);
+    else assert.match(String(colors[key]), /^#[0-9a-f]{8}$/, key);
 });
 
 test("keys with no role in the foundation are left at VS Code defaults", () => {

@@ -1,6 +1,6 @@
 # Open items
 
-State on 2026-10-14 (`main` at v0.4.0, foundation 0.11.0). Everything that could be done in this repository is done; the Vivid Life issue is filed as [vivid-life-theme/vivid-life-design-system#28](https://github.com/vivid-life-theme/vivid-life-design-system/issues/28). Delete an item when it is done.
+State on 2026-10-14 (`main` at v0.4.0, foundation 0.11.0). Delete an item when it is done.
 
 ## Upstream, in `sepps-workshop-design-system`
 

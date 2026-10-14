@@ -76,6 +76,7 @@ test("text takes a text, syntax, semantic or fill-text role", () => {
       s.foreground,
     ]),
   ].filter(([, colour]) => colour);
+  // By value: a text colour that is also published as a border passes.
   for (const [where, colour] of foregrounds)
     assert.ok(
       (publishedAt.get(colour) ?? []).some((path) => textRole.test(path)),
@@ -115,12 +116,12 @@ test("the template sources contain no colour literal", () => {
 
 test("no tokenColors rule ends in a meta scope", () => {
   // Captures of a few characters that a grammar names meta.* all the same.
-  const captures = ["meta.toc-list.line-number.diff"];
+  const captures = { "Diff hunk range": ["meta.toc-list.line-number.diff"] };
   for (const rule of theme.tokenColors)
     for (const scope of rule.scope) {
       const last = scope.trim().split(/\s+/).pop();
       assert.ok(
-        !last.startsWith("meta.") || captures.includes(last),
+        !last.startsWith("meta.") || captures[rule.name]?.includes(last),
         `rule "${rule.name}" targets "${scope}"`,
       );
     }
@@ -191,10 +192,13 @@ test("emphasis and strong carry their foundation colour and a font style", () =>
   });
 });
 
-test("an extended slot without a style is upright inside italic rules", () => {
+test("a slot without a style is upright inside a styled slot only", () => {
   // doc_keyword sits in a comment, selector on an attribute name.
-  for (const slot of ["doc_keyword", "selector", "shebang", "operator"])
+  for (const slot of ["doc_keyword", "selector", "shebang"])
     assert.equal(findRule(slot).fontStyle, "", slot);
+  // Inline code and links in bold or italic Markdown keep that style.
+  for (const slot of ["code", "link", "key", "operator", "keyword"])
+    assert.equal(findRule(slot).fontStyle, undefined, slot);
   assert.equal(findRule("doc_type").fontStyle, "italic");
   assert.equal(findRule("lang_var").fontStyle, "italic");
 });

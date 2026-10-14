@@ -20,24 +20,36 @@ function settings(tokens, role, baseStyle = []) {
 // One rule per slot in scope_recommendations, named after the slot.
 function buildGeneratedTokenRules(tokens) {
   const { core, core_style, extended } = tokens.syntax_tokens;
-  return Object.entries(tokens.scope_recommendations).map(([slot, scope]) => {
-    if (slot === "fg_fallthrough_jsts")
-      return { name: slot, scope, settings: settings(tokens, "fg") };
-    if (core.includes(slot))
-      return {
-        name: slot,
-        scope,
-        settings: settings(tokens, slot, core_style[slot]),
-      };
-    // An extended slot states its style in full. fontStyle "" keeps one
-    // without a style upright inside an italic rule (comment, attr).
-    const own = settings(tokens, extended[slot]);
-    return {
-      name: slot,
-      scope,
-      settings: { ...own, fontStyle: own.fontStyle ?? "" },
-    };
-  });
+  const rules = Object.entries(tokens.scope_recommendations).map(
+    ([slot, scope]) => {
+      if (slot === "fg_fallthrough_jsts")
+        return { name: slot, scope, settings: settings(tokens, "fg") };
+      if (core.includes(slot))
+        return {
+          name: slot,
+          scope,
+          settings: settings(tokens, slot, core_style[slot]),
+        };
+      return { name: slot, scope, settings: settings(tokens, extended[slot]) };
+    },
+  );
+  // A slot without a style whose own selector sits inside a styled slot
+  // (doc_keyword in a comment, selector on an attribute name) would inherit
+  // that style. fontStyle "" keeps it upright, as the foundation states.
+  const styled = rules
+    .filter((r) => r.settings.fontStyle)
+    .flatMap((r) => r.scope)
+    .filter((scope) => !scope.includes(" "));
+  const inside = (selector) =>
+    selector
+      .split(/\s+/)
+      .some((part) =>
+        styled.some((scope) => part === scope || part.startsWith(`${scope}.`)),
+      );
+  for (const rule of rules)
+    if (!rule.settings.fontStyle && rule.scope.some(inside))
+      rule.settings.fontStyle = "";
+  return rules;
 }
 
 function buildTokenColors(tokens) {
