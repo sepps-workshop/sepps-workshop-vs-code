@@ -53,6 +53,47 @@ test("every colour in the theme is a value the foundation publishes", () => {
     assert.ok(published.has(colour), `${path} is ${colour}: not a token`);
 });
 
+// Every token path a colour is published under.
+const publishedAt = new Map();
+for (const [path, colour] of collectColours(tokens))
+  publishedAt.set(colour, [...(publishedAt.get(colour) ?? []), path]);
+
+test("text takes a text, syntax, semantic or fill-text role", () => {
+  // Lines VS Code calls "foreground"; they take a border.
+  const lines = ["editorRuler.foreground", "textSeparator.foreground"];
+  const textRole =
+    /^(text|syntax|semantic|ansi)\.|^accent(_on)?$|^semantic_fill\.\w+\.text$/;
+  const foregrounds = [
+    ...Object.entries(colors).filter(
+      ([key]) => /foreground\d*$/i.test(key) && !lines.includes(key),
+    ),
+    ...theme.tokenColors.map((r) => [
+      `rule "${r.name}"`,
+      r.settings.foreground,
+    ]),
+    ...Object.entries(theme.semanticTokenColors).map(([type, s]) => [
+      `semantic ${type}`,
+      s.foreground,
+    ]),
+  ].filter(([, colour]) => colour);
+  for (const [where, colour] of foregrounds)
+    assert.ok(
+      (publishedAt.get(colour) ?? []).some((path) => textRole.test(path)),
+      `${where} is ${colour}, published only as ${publishedAt.get(colour)}`,
+    );
+});
+
+test("a wash is never replaced by its composited value", () => {
+  // `hex` and `hex_terminal` are for ports that cannot blend. VS Code can.
+  const flat = new Set(
+    Object.values(tokens.overlay).flatMap((o) => [o.hex, o.hex_terminal]),
+  );
+  for (const [path, colour] of collectColours(tokens))
+    if (!path.startsWith("overlay.")) flat.delete(colour);
+  for (const [path, colour] of collectColours(theme))
+    assert.ok(!flat.has(colour), `${path} is the composited ${colour}`);
+});
+
 test("no theme value is missing", () => {
   for (const [key, value] of Object.entries(colors))
     assert.match(String(value), /^#[0-9a-f]{6}([0-9a-f]{2})?$/, key);
@@ -73,12 +114,28 @@ test("the template sources contain no colour literal", () => {
 /* ── Syntax ──────────────────────────────────────────────────────── */
 
 test("no tokenColors rule ends in a meta scope", () => {
+  // Captures of a few characters that a grammar names meta.* all the same.
+  const captures = ["meta.toc-list.line-number.diff"];
   for (const rule of theme.tokenColors)
-    for (const scope of rule.scope)
+    for (const scope of rule.scope) {
+      const last = scope.trim().split(/\s+/).pop();
       assert.ok(
-        !scope.trim().split(/\s+/).pop().startsWith("meta."),
+        !last.startsWith("meta.") || captures.includes(last),
         `rule "${rule.name}" targets "${scope}"`,
       );
+    }
+});
+
+test("no hand-written rule repeats a generated scope", () => {
+  const generated = new Set(Object.values(tokens.scope_recommendations).flat());
+  const slots = Object.keys(tokens.scope_recommendations);
+  for (const rule of theme.tokenColors)
+    if (!slots.includes(rule.name))
+      for (const scope of rule.scope)
+        assert.ok(
+          !generated.has(scope),
+          `rule "${rule.name}" repeats ${scope}`,
+        );
 });
 
 test("every scope_recommendations slot becomes a rule", () => {
@@ -134,6 +191,14 @@ test("emphasis and strong carry their foundation colour and a font style", () =>
   });
 });
 
+test("an extended slot without a style is upright inside italic rules", () => {
+  // doc_keyword sits in a comment, selector on an attribute name.
+  for (const slot of ["doc_keyword", "selector", "shebang", "operator"])
+    assert.equal(findRule(slot).fontStyle, "", slot);
+  assert.equal(findRule("doc_type").fontStyle, "italic");
+  assert.equal(findRule("lang_var").fontStyle, "italic");
+});
+
 test("JS and TS const declarations fall through to fg", () => {
   assert.deepEqual(findRule("fg_fallthrough_jsts"), { foreground: text.fg });
 });
@@ -154,9 +219,8 @@ test("format placeholders share the escape sequence rule", () => {
 test("hand-written rules take their colour from foundation roles", () => {
   assert.equal(findRule("Escape sequence").foreground, syntax.constant);
   assert.equal(findRule("Shell variable").foreground, syntax.type);
-  assert.equal(findRule("YAML key").foreground, syntax.function);
-  assert.equal(findRule("Markdown inline code").foreground, syntax.parameter);
-  assert.equal(findRule("Markdown link text").foreground, syntax.function);
+  assert.equal(findRule("At-rule marker").foreground, syntax.keyword);
+  assert.equal(findRule("Diff hunk range").foreground, syntax.function);
   assert.equal(findRule("Diff inserted").foreground, semantic.success);
   assert.equal(findRule("Diff deleted").foreground, semantic.danger);
   assert.equal(findRule("Diff changed").foreground, semantic.info);
@@ -166,9 +230,18 @@ test("hand-written rules take their colour from foundation roles", () => {
   });
 });
 
-test("the YAML key rule comes after the tag rule it overrides", () => {
-  const names = theme.tokenColors.map((r) => r.name);
-  assert.ok(names.indexOf("YAML key") > names.indexOf("tag"));
+test("YAML and JSON keys share the key slot", () => {
+  for (const scope of [
+    "entity.name.tag.yaml",
+    "support.type.property-name.json",
+  ])
+    assert.ok(
+      theme.tokenColors.find((r) => r.name === "key").scope.includes(scope),
+      scope,
+    );
+  assert.equal(findRule("key").foreground, syntax.function);
+  assert.equal(findRule("code").foreground, syntax.parameter);
+  assert.equal(findRule("link").foreground, syntax.function);
 });
 
 test("an unknown colour target stops the build by name", () => {
@@ -251,6 +324,13 @@ test("code stays readable on stacked diff spans, merge regions and the stack fra
 });
 
 /* ── Final-review fixes ──────────────────────────────────────────── */
+
+test("the diff hunk range colours its numbers, not only the @@ markers", () => {
+  assert.deepEqual(
+    theme.tokenColors.find((r) => r.name === "Diff hunk range").scope,
+    ["punctuation.definition.range.diff", "meta.toc-list.line-number.diff"],
+  );
+});
 
 test("Markdown list bullets use the scope VS Code's grammar emits", () => {
   assert.ok(

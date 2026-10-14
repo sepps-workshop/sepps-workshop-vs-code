@@ -133,7 +133,25 @@ test("states are never colour alone: hued highlights carry a border", () => {
     colors["editor.wordHighlightStrongBorder"],
     tokens.overlay.word_highlight_strong.border,
   );
-  assert.equal(colors["editorBracketMatch.border"], tokens.accent);
+  assert.equal(
+    colors["editorBracketMatch.border"],
+    tokens.overlay.word_highlight_strong.border,
+  );
+  for (const [fill, border] of [
+    ["editor.findMatchBackground", "editor.findMatchBorder"],
+    ["editor.findMatchHighlightBackground", "editor.findMatchHighlightBorder"],
+    [
+      "editor.wordHighlightStrongBackground",
+      "editor.wordHighlightStrongBorder",
+    ],
+    ["editorBracketMatch.background", "editorBracketMatch.border"],
+  ])
+    assertContrast(
+      `${border} on ${fill}`,
+      colors[border],
+      on(colors[fill], colors["editor.background"]),
+      3,
+    );
   assert.notEqual(
     colors["editor.findMatchBackground"],
     colors["editor.selectionBackground"],
@@ -149,32 +167,55 @@ test("states are never colour alone: hued highlights carry a border", () => {
   );
 });
 
-test("keys VS Code requires to be translucent are translucent", () => {
-  for (const key of [
-    "editor.inactiveSelectionBackground",
-    "editor.selectionHighlightBackground",
-    "editor.wordHighlightBackground",
-    "editor.wordHighlightStrongBackground",
-    "editor.findMatchHighlightBackground",
-    "editor.findRangeHighlightBackground",
-    "editor.hoverHighlightBackground",
-    "editor.rangeHighlightBackground",
-    "editor.symbolHighlightBackground",
-    "diffEditor.insertedTextBackground",
-    "diffEditor.removedTextBackground",
-    "diffEditor.insertedLineBackground",
-    "diffEditor.removedLineBackground",
-    "merge.currentHeaderBackground",
-    "merge.currentContentBackground",
-    "merge.incomingHeaderBackground",
-    "merge.incomingContentBackground",
-    "merge.commonHeaderBackground",
-    "merge.commonContentBackground",
-    "terminal.findMatchBackground",
-    "terminal.findMatchHighlightBackground",
-    "sideBar.dropBackground",
-  ])
-    assert.match(String(colors[key]), /^#[0-9a-f]{8}$/, key);
+// Every key VS Code's colour registry describes as "must not be opaque" or
+// "should have transparency" (checked against VS Code main, 2026-10-14).
+const MUST_BE_TRANSLUCENT = [
+  "chat.findMatchHighlightBackground",
+  "diffEditor.insertedLineBackground",
+  "diffEditor.insertedTextBackground",
+  "diffEditor.removedLineBackground",
+  "diffEditor.removedTextBackground",
+  "editor.findMatchHighlightBackground",
+  "editor.findRangeHighlightBackground",
+  "editor.findRangeHighlightBorder",
+  "editor.foldBackground",
+  "editor.hoverHighlightBackground",
+  "editor.inactiveSelectionBackground",
+  "editor.rangeHighlightBackground",
+  "editor.selectionHighlightBackground",
+  "editor.symbolHighlightBackground",
+  "editor.wordHighlightBackground",
+  "editor.wordHighlightStrongBackground",
+  "editor.wordHighlightTextBackground",
+  "editorError.background",
+  "editorGroup.dropBackground",
+  "editorInfo.background",
+  "editorOverviewRuler.findMatchForeground",
+  "editorOverviewRuler.rangeHighlightForeground",
+  "editorOverviewRuler.selectionHighlightForeground",
+  "editorOverviewRuler.wordHighlightForeground",
+  "editorOverviewRuler.wordHighlightStrongForeground",
+  "editorOverviewRuler.wordHighlightTextForeground",
+  "editorWarning.background",
+  "merge.commonContentBackground",
+  "merge.commonHeaderBackground",
+  "merge.currentContentBackground",
+  "merge.currentHeaderBackground",
+  "merge.incomingContentBackground",
+  "merge.incomingHeaderBackground",
+  "panelSection.dropBackground",
+  "sideBar.dropBackground",
+  "terminal.dropBackground",
+  "terminal.findMatchBackground",
+  "terminal.findMatchHighlightBackground",
+  "terminal.hoverHighlightBackground",
+  "terminalOverviewRuler.findMatchForeground",
+];
+
+test("keys VS Code requires to be translucent are translucent where set", () => {
+  const set = MUST_BE_TRANSLUCENT.filter((key) => key in colors);
+  assert.ok(set.length >= 22, `only ${set.length} of them set`);
+  for (const key of set) assert.match(colors[key], /^#[0-9a-f]{8}$/, key);
 });
 
 test("keys with no role in the foundation are left at VS Code defaults", () => {
@@ -315,11 +356,15 @@ test("rows that keep git and diagnostic colours stay readable", () => {
     }
 });
 
-test("ANSI colours stay readable on the terminal selection", () => {
+test("ANSI colours stay readable on the terminal selection and find matches", () => {
   const term = colors["terminal.background"];
+  // The foundation gates the selection only; the find matches are this
+  // port's pairs until it gates them too.
   for (const wash of [
     "terminal.selectionBackground",
     "terminal.inactiveSelectionBackground",
+    "terminal.findMatchBackground",
+    "terminal.findMatchHighlightBackground",
   ])
     for (const [key, value] of Object.entries(colors))
       if (key.startsWith("terminal.ansi") && key !== "terminal.ansiBlack")
@@ -385,6 +430,20 @@ test("chat requests and welcome tiles keep links and descriptions readable", () 
       colors["welcomePage.tileBackground"],
     ),
     4.5,
+  );
+});
+
+test("an overlay border the foundation no longer has stops the build by name", () => {
+  const broken = structuredClone(tokens);
+  delete broken.overlay.find_match_other.border;
+  assert.throws(
+    () => buildWorkbenchColors(broken),
+    /Overlay find_match_other has no border/,
+  );
+  delete broken.overlay.find_match_other;
+  assert.throws(
+    () => buildWorkbenchColors(broken),
+    /Unknown overlay: find_match_other/,
   );
 });
 

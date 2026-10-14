@@ -564,7 +564,8 @@
         "variable.other"
       ],
       "settings": {
-        "foreground": "#e7eaf1"
+        "foreground": "#e7eaf1",
+        "fontStyle": ""
       }
     },
     {
@@ -575,7 +576,8 @@
         "support.type.property-name"
       ],
       "settings": {
-        "foreground": "#e7eaf1"
+        "foreground": "#e7eaf1",
+        "fontStyle": ""
       }
     },
     {
@@ -585,7 +587,8 @@
         "keyword.symbol"
       ],
       "settings": {
-        "foreground": "#b6c1d5"
+        "foreground": "#b6c1d5",
+        "fontStyle": ""
       }
     },
     {
@@ -620,7 +623,8 @@
         "entity.name.scope-resolution"
       ],
       "settings": {
-        "foreground": "#fde399"
+        "foreground": "#fde399",
+        "fontStyle": ""
       }
     },
     {
@@ -638,7 +642,8 @@
         "storage.type.uintptr.go"
       ],
       "settings": {
-        "foreground": "#fde399"
+        "foreground": "#fde399",
+        "fontStyle": ""
       }
     },
     {
@@ -648,7 +653,8 @@
         "support.function.macro"
       ],
       "settings": {
-        "foreground": "#80c7e7"
+        "foreground": "#80c7e7",
+        "fontStyle": ""
       }
     },
     {
@@ -658,7 +664,8 @@
         "entity.name.lifetime.rust"
       ],
       "settings": {
-        "foreground": "#f29452"
+        "foreground": "#f29452",
+        "fontStyle": ""
       }
     },
     {
@@ -680,7 +687,8 @@
         "string.other.link"
       ],
       "settings": {
-        "foreground": "#80c7e7"
+        "foreground": "#80c7e7",
+        "fontStyle": ""
       }
     },
     {
@@ -691,7 +699,8 @@
         "meta.selector entity.other.attribute-name"
       ],
       "settings": {
-        "foreground": "#fbba00"
+        "foreground": "#fbba00",
+        "fontStyle": ""
       }
     },
     {
@@ -700,7 +709,8 @@
         "keyword.other.unit"
       ],
       "settings": {
-        "foreground": "#f29452"
+        "foreground": "#f29452",
+        "fontStyle": ""
       }
     },
     {
@@ -710,7 +720,8 @@
         "constant.other.color.rgb-value.css"
       ],
       "settings": {
-        "foreground": "#f7c29c"
+        "foreground": "#f7c29c",
+        "fontStyle": ""
       }
     },
     {
@@ -719,7 +730,8 @@
         "comment.line.shebang"
       ],
       "settings": {
-        "foreground": "#9eadc7"
+        "foreground": "#9eadc7",
+        "fontStyle": ""
       }
     },
     {
@@ -762,7 +774,8 @@
         "markup.raw.block"
       ],
       "settings": {
-        "foreground": "#b3ddf1"
+        "foreground": "#b3ddf1",
+        "fontStyle": ""
       }
     },
     {
@@ -772,7 +785,8 @@
         "entity.name.tag.yaml"
       ],
       "settings": {
-        "foreground": "#80c7e7"
+        "foreground": "#80c7e7",
+        "fontStyle": ""
       }
     },
     {
@@ -801,7 +815,8 @@
         "comment.block.documentation keyword"
       ],
       "settings": {
-        "foreground": "#fbba00"
+        "foreground": "#fbba00",
+        "fontStyle": ""
       }
     },
     {
@@ -831,7 +846,8 @@
         "support.type.event"
       ],
       "settings": {
-        "foreground": "#80c7e7"
+        "foreground": "#80c7e7",
+        "fontStyle": ""
       }
     },
     {
@@ -915,15 +931,6 @@
       }
     },
     {
-      "name": "YAML key",
-      "scope": [
-        "entity.name.tag.yaml"
-      ],
-      "settings": {
-        "foreground": "#80c7e7"
-      }
-    },
-    {
       "name": "YAML alias",
       "scope": [
         "variable.other.alias.yaml"
@@ -945,9 +952,8 @@
       }
     },
     {
-      "name": "CSS at-rule",
+      "name": "At-rule marker",
       "scope": [
-        "keyword.control.at-rule",
         "punctuation.definition.keyword"
       ],
       "settings": {
@@ -962,26 +968,6 @@
       ],
       "settings": {
         "fontStyle": "bold italic"
-      }
-    },
-    {
-      "name": "Markdown link text",
-      "scope": [
-        "string.other.link.description.markdown",
-        "string.other.link.title.markdown"
-      ],
-      "settings": {
-        "foreground": "#80c7e7"
-      }
-    },
-    {
-      "name": "Markdown inline code",
-      "scope": [
-        "markup.inline.raw",
-        "markup.raw.block"
-      ],
-      "settings": {
-        "foreground": "#b3ddf1"
       }
     },
     {
@@ -1036,7 +1022,8 @@
     {
       "name": "Diff hunk range",
       "scope": [
-        "punctuation.definition.range.diff"
+        "punctuation.definition.range.diff",
+        "meta.toc-list.line-number.diff"
       ],
       "settings": {
         "foreground": "#80c7e7"

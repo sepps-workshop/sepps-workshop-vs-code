@@ -29,12 +29,19 @@ function buildGeneratedTokenRules(tokens) {
         scope,
         settings: settings(tokens, slot, core_style[slot]),
       };
-    return { name: slot, scope, settings: settings(tokens, extended[slot]) };
+    // An extended slot states its style in full. fontStyle "" keeps one
+    // without a style upright inside an italic rule (comment, attr).
+    const own = settings(tokens, extended[slot]);
+    return {
+      name: slot,
+      scope,
+      settings: { ...own, fontStyle: own.fontStyle ?? "" },
+    };
   });
 }
 
 function buildTokenColors(tokens) {
-  const { extended, core_style } = tokens.syntax_tokens;
+  const { core_style } = tokens.syntax_tokens;
   const { git } = tokens.workbench_color_roles;
   const rule = (name, scope, role) => ({
     name,
@@ -75,8 +82,6 @@ function buildTokenColors(tokens) {
       ["source.shell variable.other", "variable.other.normal.shell"],
       tokens.shell_roles.variable.color,
     ),
-    // Without this the tag rule paints YAML keys while JSON keys stay fg.
-    rule("YAML key", ["entity.name.tag.yaml"], extended.key),
     rule("YAML alias", ["variable.other.alias.yaml"], {
       color: "string",
       style: ["italic", "underline"],
@@ -89,11 +94,8 @@ function buildTokenColors(tokens) {
       ],
       { color: "comment", style: ["italic"] },
     ),
-    rule(
-      "CSS at-rule",
-      ["keyword.control.at-rule", "punctuation.definition.keyword"],
-      "keyword",
-    ),
+    // The keyword slot covers the at-rule; its "@" would take punct.
+    rule("At-rule marker", ["punctuation.definition.keyword"], "keyword"),
     rule(
       "Markdown bold+italic",
       [
@@ -101,20 +103,6 @@ function buildTokenColors(tokens) {
         "markup.italic.markdown markup.bold.markdown",
       ],
       { style: ["bold", "italic"] },
-    ),
-    rule(
-      "Markdown link text",
-      [
-        "string.other.link.description.markdown",
-        "string.other.link.title.markdown",
-      ],
-      extended.link,
-    ),
-    // Not markup.fenced_code.block: that would tint the embedded language.
-    rule(
-      "Markdown inline code",
-      ["markup.inline.raw", "markup.raw.block"],
-      extended.code,
     ),
     rule(
       "Markdown quote",
@@ -133,7 +121,12 @@ function buildTokenColors(tokens) {
     rule("Diff inserted", ["markup.inserted"], git.added),
     rule("Diff deleted", ["markup.deleted"], git.deleted),
     rule("Diff changed", ["markup.changed"], git.modified),
-    rule("Diff hunk range", ["punctuation.definition.range.diff"], "function"),
+    // The range numbers are a capture, not a region, despite the meta name.
+    rule(
+      "Diff hunk range",
+      ["punctuation.definition.range.diff", "meta.toc-list.line-number.diff"],
+      "function",
+    ),
   ];
 }
 
