@@ -514,9 +514,10 @@ export function buildWorkbenchColors(tokens) {
 
     // chat
     "chat.requestBorder": border.subtle,
-    // Requests show links and inline code, which bg_soft cannot carry.
-    "chat.requestBackground": wash("hover"),
-    "chat.requestBubbleBackground": wash("hover"),
+    // A darkening wash vanishes on bg and bg_chrome; bg_soft sets a bubble off
+    // from both and still carries links and inline code (>= 4.5:1).
+    "chat.requestBackground": surface.bg_soft,
+    "chat.requestBubbleBackground": surface.bg_soft,
     "chat.requestCodeBorder": border.default,
     "chat.checkpointSeparator": border.subtle,
     "chat.thinkingShimmer": accent,
