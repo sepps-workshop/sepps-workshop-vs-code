@@ -20,21 +20,40 @@ function settings(tokens, role, baseStyle = []) {
 // One rule per slot in scope_recommendations, named after the slot.
 function buildGeneratedTokenRules(tokens) {
   const { core, core_style, extended } = tokens.syntax_tokens;
-  return Object.entries(tokens.scope_recommendations).map(([slot, scope]) => {
-    if (slot === "fg_fallthrough_jsts")
-      return { name: slot, scope, settings: settings(tokens, "fg") };
-    if (core.includes(slot))
-      return {
-        name: slot,
-        scope,
-        settings: settings(tokens, slot, core_style[slot]),
-      };
-    return { name: slot, scope, settings: settings(tokens, extended[slot]) };
-  });
+  const rules = Object.entries(tokens.scope_recommendations).map(
+    ([slot, scope]) => {
+      if (slot === "fg_fallthrough_jsts")
+        return { name: slot, scope, settings: settings(tokens, "fg") };
+      if (core.includes(slot))
+        return {
+          name: slot,
+          scope,
+          settings: settings(tokens, slot, core_style[slot]),
+        };
+      return { name: slot, scope, settings: settings(tokens, extended[slot]) };
+    },
+  );
+  // A slot without a style whose own selector sits inside a styled slot
+  // (doc_keyword in a comment, selector on an attribute name) would inherit
+  // that style. fontStyle "" keeps it upright, as the foundation states.
+  const styled = rules
+    .filter((r) => r.settings.fontStyle)
+    .flatMap((r) => r.scope)
+    .filter((scope) => !scope.includes(" "));
+  const inside = (selector) =>
+    selector
+      .split(/\s+/)
+      .some((part) =>
+        styled.some((scope) => part === scope || part.startsWith(`${scope}.`)),
+      );
+  for (const rule of rules)
+    if (!rule.settings.fontStyle && rule.scope.some(inside))
+      rule.settings.fontStyle = "";
+  return rules;
 }
 
 function buildTokenColors(tokens) {
-  const { extended, core_style } = tokens.syntax_tokens;
+  const { core_style } = tokens.syntax_tokens;
   const { git } = tokens.workbench_color_roles;
   const rule = (name, scope, role) => ({
     name,
@@ -75,8 +94,6 @@ function buildTokenColors(tokens) {
       ["source.shell variable.other", "variable.other.normal.shell"],
       tokens.shell_roles.variable.color,
     ),
-    // Without this the tag rule paints YAML keys while JSON keys stay fg.
-    rule("YAML key", ["entity.name.tag.yaml"], extended.key),
     rule("YAML alias", ["variable.other.alias.yaml"], {
       color: "string",
       style: ["italic", "underline"],
@@ -89,11 +106,8 @@ function buildTokenColors(tokens) {
       ],
       { color: "comment", style: ["italic"] },
     ),
-    rule(
-      "CSS at-rule",
-      ["keyword.control.at-rule", "punctuation.definition.keyword"],
-      "keyword",
-    ),
+    // The keyword slot covers the at-rule; its "@" would take punct.
+    rule("At-rule marker", ["punctuation.definition.keyword"], "keyword"),
     rule(
       "Markdown bold+italic",
       [
@@ -101,20 +115,6 @@ function buildTokenColors(tokens) {
         "markup.italic.markdown markup.bold.markdown",
       ],
       { style: ["bold", "italic"] },
-    ),
-    rule(
-      "Markdown link text",
-      [
-        "string.other.link.description.markdown",
-        "string.other.link.title.markdown",
-      ],
-      extended.link,
-    ),
-    // Not markup.fenced_code.block: that would tint the embedded language.
-    rule(
-      "Markdown inline code",
-      ["markup.inline.raw", "markup.raw.block"],
-      extended.code,
     ),
     rule(
       "Markdown quote",
@@ -133,7 +133,12 @@ function buildTokenColors(tokens) {
     rule("Diff inserted", ["markup.inserted"], git.added),
     rule("Diff deleted", ["markup.deleted"], git.deleted),
     rule("Diff changed", ["markup.changed"], git.modified),
-    rule("Diff hunk range", ["punctuation.definition.range.diff"], "function"),
+    // The range numbers are a capture, not a region, despite the meta name.
+    rule(
+      "Diff hunk range",
+      ["punctuation.definition.range.diff", "meta.toc-list.line-number.diff"],
+      "function",
+    ),
   ];
 }
 
