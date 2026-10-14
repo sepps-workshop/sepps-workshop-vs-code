@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-10-14
+
 ### Changed
 
 - The agent sessions window follows the editor: the chat card sits on `bg` with `fg` text, and the window shell around it on `bg_chrome`. Before, VS Code's defaults put the chat on `bg_chrome` inside a `bg` shell. Agent answers still have no bubble; VS Code draws one around requests only.
