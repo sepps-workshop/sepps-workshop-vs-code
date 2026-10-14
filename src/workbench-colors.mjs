@@ -530,6 +530,15 @@ export function buildWorkbenchColors(tokens) {
     "chat.linesRemovedForeground": git.deleted,
     "chatManagement.sashBorder": border.subtle,
 
+    // agent sessions window — the chat card is read like the editor, so it
+    // takes the canvas; the shell around it is chrome. VS Code's dark
+    // defaults have it the other way round.
+    "agents.background": surface.bg_chrome,
+    "agentsPanel.background": surface.bg,
+    "agentsPanel.foreground": text.fg,
+    "agentsPanel.border": border.subtle,
+    "agentsDetail.background": surface.bg,
+
     // extensions
     "extensionButton.prominentBackground": accent,
     "extensionButton.prominentForeground": accent_on,

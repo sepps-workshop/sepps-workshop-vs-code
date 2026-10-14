@@ -12,7 +12,10 @@ const { text, surface, syntax, semantic } = tokens;
 test("content and terminal sit on the canvas, chrome on Darkblue", () => {
   assert.equal(colors["editor.background"], surface.bg);
   assert.equal(colors["tab.activeBackground"], surface.bg);
+  assert.equal(colors["agentsPanel.background"], surface.bg);
+  assert.equal(colors["agentsDetail.background"], surface.bg);
   for (const key of [
+    "agents.background",
     "sideBar.background",
     "activityBar.background",
     "statusBar.background",
