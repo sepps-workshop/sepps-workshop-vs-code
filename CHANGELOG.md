@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+
+- Updated to `@sepps-workshop/design-system` 0.12.0.
+- The selection is a light Sunset tint instead of Darkblack (`editor.selectionBackground`, `terminal.selectionBackground`, `selection.background`): 25 % when focused, 20 % when not. Darkblack differed from the editor background mostly in hue and hardly in lightness, so a selection was easy to miss. Text on a selection now reaches 3:1 instead of 4.5:1; plain text keeps 7:1.
+- Word, symbol and bracket highlights are slightly fainter (Sunset 8 % instead of 10 %), so they stay apart from an unfocused selection.
+
 ## [0.4.0] - 2026-10-14
 
 ### Changed
