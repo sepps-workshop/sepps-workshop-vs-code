@@ -15,10 +15,17 @@ export function buildWorkbenchColors(tokens) {
   const signal = resolve(roles.signals);
   const git = resolve(roles.git);
   const link = resolveTarget(tokens, tokens.syntax_tokens.extended.link);
-  // The recipe itself, translucent: VS Code blends it over whatever is below.
-  const wash = (name) => {
+  const recipe = (name) => {
     if (!overlay[name]) throw new Error(`Unknown overlay: ${name}`);
-    return overlay[name].hexa;
+    return overlay[name];
+  };
+  // The recipe itself, translucent: VS Code blends it over whatever is below.
+  const wash = (name) => recipe(name).hexa;
+  // The recipe's border, opaque. Not every recipe has one.
+  const edge = (name) => {
+    const { border } = recipe(name);
+    if (!border) throw new Error(`Overlay ${name} has no border`);
+    return border;
   };
 
   const colors = {
@@ -48,12 +55,12 @@ export function buildWorkbenchColors(tokens) {
     // Read and write access share a fill; the write highlight adds the border.
     "editor.wordHighlightBackground": wash("word_highlight"),
     "editor.wordHighlightStrongBackground": wash("word_highlight_strong"),
-    "editor.wordHighlightStrongBorder": overlay.word_highlight_strong.border,
+    "editor.wordHighlightStrongBorder": edge("word_highlight_strong"),
     // Find matches are hued and bordered, so they never read as selection.
     "editor.findMatchBackground": wash("find_match"),
-    "editor.findMatchBorder": overlay.find_match.border,
+    "editor.findMatchBorder": edge("find_match"),
     "editor.findMatchHighlightBackground": wash("find_match_other"),
-    "editor.findMatchHighlightBorder": overlay.find_match_other.border,
+    "editor.findMatchHighlightBorder": edge("find_match_other"),
     "editor.findRangeHighlightBackground": wash("selection_inactive"),
     "editor.hoverHighlightBackground": wash("word_highlight"),
     "editor.rangeHighlightBackground": wash("hover"),
@@ -65,7 +72,7 @@ export function buildWorkbenchColors(tokens) {
     "editorRuler.foreground": border.subtle,
     "editorCodeLens.foreground": text.fg_subtle,
     "editorBracketMatch.background": wash("word_highlight_strong"),
-    "editorBracketMatch.border": overlay.word_highlight_strong.border,
+    "editorBracketMatch.border": edge("word_highlight_strong"),
     "editorOverviewRuler.border": border.subtle,
     "editorOverviewRuler.modifiedForeground": git.modified,
     "editorOverviewRuler.addedForeground": git.added,
@@ -263,7 +270,7 @@ export function buildWorkbenchColors(tokens) {
 
     // minimap
     "minimap.background": surface.bg,
-    "minimap.findMatchHighlight": overlay.find_match.border,
+    "minimap.findMatchHighlight": edge("find_match"),
     "minimap.selectionHighlight": text.fg_muted,
     "minimap.errorHighlight": signal.error,
     "minimap.warningHighlight": signal.warning,
@@ -317,9 +324,9 @@ export function buildWorkbenchColors(tokens) {
     "terminal.selectionBackground": wash("selection"),
     "terminal.inactiveSelectionBackground": wash("selection_inactive"),
     "terminal.findMatchBackground": wash("find_match"),
-    "terminal.findMatchBorder": overlay.find_match.border,
+    "terminal.findMatchBorder": edge("find_match"),
     "terminal.findMatchHighlightBackground": wash("find_match_other"),
-    "terminal.findMatchHighlightBorder": overlay.find_match_other.border,
+    "terminal.findMatchHighlightBorder": edge("find_match_other"),
     "terminalCursor.foreground": accent,
     "terminalCursor.background": surface.bg,
     "terminal.ansiBlack": ansi.black,
@@ -375,7 +382,7 @@ export function buildWorkbenchColors(tokens) {
     "peekView.border": accent,
     "peekViewEditor.background": surface.bg,
     "peekViewEditor.matchHighlightBackground": wash("find_match"),
-    "peekViewEditor.matchHighlightBorder": overlay.find_match.border,
+    "peekViewEditor.matchHighlightBorder": edge("find_match"),
     "peekViewEditorGutter.background": surface.bg,
     "peekViewResult.background": surface.bg_chrome,
     "peekViewResult.fileForeground": text.fg,

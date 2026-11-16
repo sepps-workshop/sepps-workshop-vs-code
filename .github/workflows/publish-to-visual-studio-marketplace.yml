@@ -17,9 +17,15 @@ jobs:
         with:
           node-version: 22
           cache: npm
+      - name: Check the tag against the manifest version
+        run: |
+          version="v$(node -p 'require("./package.json").version')"
+          if [ "$GITHUB_REF_NAME" != "$version" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match package.json ($version)"
+            exit 1
+          fi
       - run: npm ci
       - run: npm test
-      - run: npm install -g npm@latest
       - run: npx vsce publish
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}

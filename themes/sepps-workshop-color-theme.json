@@ -691,7 +691,8 @@
         "meta.selector entity.other.attribute-name"
       ],
       "settings": {
-        "foreground": "#fbba00"
+        "foreground": "#fbba00",
+        "fontStyle": ""
       }
     },
     {
@@ -719,7 +720,8 @@
         "comment.line.shebang"
       ],
       "settings": {
-        "foreground": "#9eadc7"
+        "foreground": "#9eadc7",
+        "fontStyle": ""
       }
     },
     {
@@ -801,7 +803,8 @@
         "comment.block.documentation keyword"
       ],
       "settings": {
-        "foreground": "#fbba00"
+        "foreground": "#fbba00",
+        "fontStyle": ""
       }
     },
     {
@@ -915,15 +918,6 @@
       }
     },
     {
-      "name": "YAML key",
-      "scope": [
-        "entity.name.tag.yaml"
-      ],
-      "settings": {
-        "foreground": "#80c7e7"
-      }
-    },
-    {
       "name": "YAML alias",
       "scope": [
         "variable.other.alias.yaml"
@@ -945,9 +939,8 @@
       }
     },
     {
-      "name": "CSS at-rule",
+      "name": "At-rule marker",
       "scope": [
-        "keyword.control.at-rule",
         "punctuation.definition.keyword"
       ],
       "settings": {
@@ -962,26 +955,6 @@
       ],
       "settings": {
         "fontStyle": "bold italic"
-      }
-    },
-    {
-      "name": "Markdown link text",
-      "scope": [
-        "string.other.link.description.markdown",
-        "string.other.link.title.markdown"
-      ],
-      "settings": {
-        "foreground": "#80c7e7"
-      }
-    },
-    {
-      "name": "Markdown inline code",
-      "scope": [
-        "markup.inline.raw",
-        "markup.raw.block"
-      ],
-      "settings": {
-        "foreground": "#b3ddf1"
       }
     },
     {
@@ -1036,7 +1009,8 @@
     {
       "name": "Diff hunk range",
       "scope": [
-        "punctuation.definition.range.diff"
+        "punctuation.definition.range.diff",
+        "meta.toc-list.line-number.diff"
       ],
       "settings": {
         "foreground": "#80c7e7"
