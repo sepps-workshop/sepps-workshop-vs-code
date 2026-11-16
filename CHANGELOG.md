@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.5.1] - 2026-11-16
+
 ### Changed
 
 - Documentation keywords such as `@param`, CSS class and attribute selectors and shebang lines no longer inherit the italic of the comment or attribute rule around them, as the foundation's table intends. A slot without a style that sits inside a styled slot sets `fontStyle: ""`; inline code and links in bold or italic Markdown keep that style.
