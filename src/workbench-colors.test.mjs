@@ -378,19 +378,24 @@ test("rows that keep git and diagnostic colours stay readable", () => {
     }
 });
 
+// A selection is a signal, not a surface to read on: the foundation asks 3:1.
+// The find matches are this port's pairs until the foundation gates them too.
 test("ANSI colours stay readable on the terminal selection and find matches", () => {
   const term = colors["terminal.background"];
-  // The foundation gates the selection only; the find matches are this
-  // port's pairs until it gates them too.
-  for (const wash of [
-    "terminal.selectionBackground",
-    "terminal.inactiveSelectionBackground",
-    "terminal.findMatchBackground",
-    "terminal.findMatchHighlightBackground",
+  for (const [wash, ratio] of [
+    ["terminal.selectionBackground", 3],
+    ["terminal.inactiveSelectionBackground", 3],
+    ["terminal.findMatchBackground", 4.5],
+    ["terminal.findMatchHighlightBackground", 4.5],
   ])
     for (const [key, value] of Object.entries(colors))
       if (key.startsWith("terminal.ansi") && key !== "terminal.ansiBlack")
-        assertContrast(`${key} on ${wash}`, value, on(colors[wash], term), 4.5);
+        assertContrast(
+          `${key} on ${wash}`,
+          value,
+          on(colors[wash], term),
+          ratio,
+        );
 });
 
 test("the focus ring and control outlines reach 3:1 on every surface", () => {

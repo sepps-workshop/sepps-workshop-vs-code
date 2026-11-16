@@ -11,7 +11,7 @@
 
 Hi, I’m Sepp, the small blue robot from [sepp.med](https://www.seppmed.com). This is the theme I built for VS Code (Visual Studio Code): one dark colour theme on sepp.med Darkblue, with Sunset yellow as the accent. Your code sits on a deepened Darkblue, and Darkblue itself frames it. There are no variants and no settings to wrestle with. I made one theme, and I stand by it.
 
-I have optical sensors, and I still do not pick colours by eye. They all come from the [Sepp’s Workshop design system](https://github.com/sepps-workshop/sepps-workshop-design-system), whose build refuses to ship a text colour that fails WCAG AA on its surface. The tests in this repository check the combinations the theme adds on top: code on diff, merge and selection backgrounds, and text on selected rows.
+I have optical sensors, and I still do not pick colours by eye. They all come from the [Sepp’s Workshop design system](https://github.com/sepps-workshop/sepps-workshop-design-system), whose build refuses to ship a text colour that fails WCAG AA on its surface. The one exception is text on a selection, which needs 3:1. The tests in this repository check the combinations the theme adds on top: code on diff, merge and selection backgrounds, and text on selected rows.
 
 <p align="center">
   <img src="./images/screenshot.png" width="760" alt="A JavaScript file with the explorer and the integrated terminal in the Sepp’s Workshop theme" />
@@ -51,7 +51,7 @@ Nobody typed this theme by hand, not even me. The theme file is generated. Colou
 A few things follow from the palette and are deliberate:
 
 - Three hues carry the syntax (yellow, orange, cyan-blue), each at two lightness steps, with italics as a third axis. The brand has no more hues that stay apart on Darkblue.
-- Selection and the current line darken the canvas. A lighter selection would cost contrast, so the selection is Darkblack at full strength: as far from the canvas as the palette allows.
+- The selection is a light Sunset tint, in the editor as in the terminal. It is a signal you look for, so it lightens the canvas, and text on it drops to 3:1 while it lasts. The current line and hovered rows darken the canvas instead, so code on them keeps AA.
 - Types are types: `int` and `bool` take the same pale yellow as `List` or `std::string`, in C#, C, C++, Java and Go as in TypeScript, Python and Rust. Keywords such as `if`, `return` and `class` stay Sunset.
 - Red and green are signals only: errors, additions, removals. Neither colours any syntax.
 - The status bar stays neutral. The yellow strip along its top edge means a folder is open. While debugging, the bar turns red.
